@@ -84,7 +84,7 @@ class File {
      * @param string   $upload_dir 업로드 경로 (기본: /data/file/{bo_table})
      * @return bool 성공 여부 (삭제할 파일이 없어도 true)
      */
-    public static function delete_file(
+    public static function delete_attach_file(
         string $bo_table,
         int $idx,
         ?int $bf_no = null,
@@ -116,4 +116,5 @@ class File {
         return true;
     }
 }
+
 
