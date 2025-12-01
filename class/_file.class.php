@@ -132,7 +132,7 @@ class File {
     {
         global $DB, $tb;
     
-        $upload_dir = "/data/{$bo_table}";
+        $upload_dir = "/data/file/{$bo_table}";
     
         $sql = "SELECT * FROM {$tb['attach_files']} WHERE idx=:idx ORDER BY bf_no ASC";
         $rows = $DB->query($sql, array('idx' => $idx));
@@ -167,6 +167,7 @@ class File {
         return $files;
     }
 }
+
 
 
 
