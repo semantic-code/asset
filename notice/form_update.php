@@ -10,8 +10,8 @@ if ($w === '') {
     $set = array(
         'wr_num'        => $wr_num,
         'ca_name'       => $ca_name ?? '',
-        'wr_subject'    => $wr_subject,
-        'wr_content'    => $wr_content,
+        'wr_subject'    => $wr_subject ?? '제목-내용없음-' . time(),
+        'wr_content'    => $wr_content ?? '내용-내용없음-' . time(),
         'wr_datetime'   => date("Y-m-d H:i:s"),
         'wr_last'       => date("Y-m-d H:i:s"),
         'wr_ip'         => $_SERVER['REMOTE_ADDR'],
@@ -46,7 +46,7 @@ if ($w === '') {
         'ca_name'       => $ca_name ?? '',
         'wr_subject'    => $wr_subject,
         'wr_content'    => $wr_content,
-        'wr_datetime'   => date("Y-m-d H:i:s"),
+        'wr_last'       => date("Y-m-d H:i:s"),
     );
 
     $sql = "UPDATE {$target_table} SET\n". Query::build_query($set) . "\nWHERE wr_id = {$wr_id} ";
@@ -70,3 +70,4 @@ if ($w === '') {
     }
 
 }
+
