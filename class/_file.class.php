@@ -115,6 +115,58 @@ class File {
         $DB->query("DELETE FROM {$tb['attach_files']} WHERE bo_table=:bo_table AND idx=:idx {$bf_sql}", $delete_data);
         return true;
     }
+
+    /**
+     * 특정 게시판($bo_table)에 저장된 첨부파일 목록을 반환한다.
+     * 모든 파일 정보를 가져오며, 이미지/비이미지를 자동으로 판별하여 type을 지정한다.
+     *
+     * @param string $bo_table  첨부파일이 저장된 게시판(또는 테이블) 이름
+     * @param int    $idx       게시글 고유번호
+     *
+     * @return array  파일 정보 배열 (bf_no 기준 정렬)
+     */
+    public static function get_files(
+        string $bo_table,
+        int    $idx
+    ) : array
+    {
+        global $DB, $tb;
+    
+        $upload_dir = "/data/{$bo_table}";
+    
+        $sql = "SELECT * FROM {$tb['attach_files']} WHERE idx=:idx ORDER BY bf_no ASC";
+        $rows = $DB->query($sql, array('idx' => $idx));
+    
+        $files = array();
+        $img_ext = array('jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp');
+    
+        foreach ($rows as $row) {
+            $no = $row['bf_no'];
+            $file = $row['bf_file'];
+            $src = $row['bf_source'];
+            $ext = strtolower(pathinfo($src, PATHINFO_EXTENSION));
+            $path = "{$upload_dir}/{$file}";
+    
+            // 이미지 여부 판단
+            $is_image = in_array($ext, $img_ext);
+    
+            $files[$no] = array(
+                "no"       => $no,
+                "file"     => $file,
+                "source"   => $src,
+                "path"     => $path,
+                "size"     => $row['bf_filesize'],
+                "ext"      => $ext,
+                "is_image" => $is_image,
+                "type"     => $is_image ? "image" : "file"
+            );
+        }
+        // 파일 개수
+        $files['count'] = count($rows);
+    
+        return $files;
+    }
 }
+
 
 
