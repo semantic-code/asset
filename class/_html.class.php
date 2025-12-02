@@ -212,7 +212,7 @@ class Html {
      */
     public static function search (
         array $arr_search  = array(),
-        array $keep_key = array(),
+        array $keep_key = array('sca'),
         string $sca         = '',
         string $sfl         = '',
         string $stx         = '',
@@ -229,6 +229,11 @@ class Html {
                 $hidden_input.= "<input type='hidden' name='{$key}' value='{$value}'>\n";
                 $init_query[$key] = $_GET[$key];
             }
+        }
+
+        // 초기화 시 sca 제거
+        if (isset($init_query['sca'])) {
+            unset($init_query['sca']);
         }
 
         // 초기화 URL
@@ -341,4 +346,5 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
 
