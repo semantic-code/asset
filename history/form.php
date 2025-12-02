@@ -9,8 +9,13 @@ $bo_use_category = $board['bo_use_category'];
 $arr_cate = explode('|', $board['bo_category_list']);
 
 if($w ==='u'){
-    $sql = "SELECT * from {$g5['write_prefix']}{$bo_table} WHERE wr_id = {$wr_id} ";
-    $list = sql_fetch($sql);
+    $list = Board::view($bo_table, $wr_id);
+} else {
+    //wr_sort 기본값
+    $sql = "SELECT MAX(wr_sort) AS max_sort FROM {$target_table}";
+    $row = sql_fetch($sql);
+    $last_sort = $row['max_sort'];
+    $next_sort = $last_sort ? floor($last_sort / 10) * 10 + 10 : 10;
 }
 
 ?>
@@ -37,7 +42,7 @@ if($w ==='u'){
                 <?php endif; ?>
                 <tr>
                     <th>정렬번호</th>
-                    <td><input type="number" name="wr_sort" value="<?= $list['wr_sort'] ?? '' ?>" required class="frm_input"></td>
+                    <td><input type="number" name="wr_sort" value="<?= $list['wr_sort'] ?? $next_sort ?>" required class="frm_input"></td>
                 </tr>
                 <tr>
                     <th>연도</th>
