@@ -8,7 +8,9 @@ include_once $path.'_common.php';
 
 $sub_menu = '750100';
 $bo_table = 'landing_log';
+$cf_bo_table = 'landing';
 $page_title = '랜딩페이지 DB';
 
 $target_table = $g5['write_prefix'] . $bo_table;
 $board = get_board_db($bo_table);
+
