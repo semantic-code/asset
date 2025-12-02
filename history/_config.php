@@ -1,6 +1,6 @@
 <?php
-error_reporting(E_ALL); // 모든 에러 표시
-ini_set('display_errors', 1); // 에러를 브라우저에 표시
+//error_reporting(E_ALL); // 모든 에러 표시
+//ini_set('display_errors', 1); // 에러를 브라우저에 표시
 
 $path = '';
 while (!file_exists($path.'_common.php') && realpath($path) !== '/') {$path .= '../';}
@@ -15,3 +15,4 @@ $target_table = $g5['write_prefix'] . $bo_table;
 // 기본 정보
 $sub_menu = '500100';
 $page_title = '연혁';
+
