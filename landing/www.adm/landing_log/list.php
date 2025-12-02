@@ -1,6 +1,5 @@
 <?php
 $colspan = 5;
-$sub_menu = "750100";
 include_once('_config.php');
 
 $page_code = $_GET['page_code'] ?? '';
@@ -9,7 +8,6 @@ $page_code = $_GET['page_code'] ?? '';
 $sql = "SELECT * FROM {$g5['write_prefix']}{$cf_bo_table} WHERE wr_page_code = '{$_GET['page_code']}' ";
 $cf = sql_fetch($sql);
 
-$page_title = "랜딩페이지 DB";
 $g5['title'] = $page_title;
 include_once(G5_ADMIN_PATH.'/admin.head.php');
 
@@ -207,6 +205,7 @@ $(document).ready(function (){
 
 <?php
 include_once(G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
