@@ -36,8 +36,8 @@ $offset = ($page - 1) * $page_rows;
 $paging = Board::paging($total_count, $page, $page_rows, 5, G5_ADMIN_URL."/history/list.php?sca={$sca}&page=");
 
 //정렬
-$order_by = "ORDER BY  wr_sort DESC";
-$sql = "SELECT * FROM {$target_table} WHERE (1) {$where_sql} LIMIT {$offset}, {$page_rows}";
+$order_sql = "ORDER BY  wr_sort DESC";
+$sql = "SELECT * FROM {$target_table} WHERE (1) {$where_sql} {$order_sql} LIMIT {$offset}, {$page_rows}";
 $result = sql_query($sql);
 
 $list = array();
@@ -235,3 +235,4 @@ echo "</pre>";
 <?php
 
 require_once G5_ADMIN_PATH . '/admin.tail.php';
+
