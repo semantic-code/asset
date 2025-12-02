@@ -212,7 +212,7 @@ class Html {
      */
     public static function search (
         array $arr_search  = array(),
-        array $keep_key = array('sca'),
+        array $keep_key = array(),
         string $sca         = '',
         string $sfl         = '',
         string $stx         = '',
@@ -341,3 +341,4 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
