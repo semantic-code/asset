@@ -202,7 +202,7 @@ echo "</pre>";
 
         <div class="btn_fixed_top">
             <a href="list.php" class="btn btn_02">초기화</a>
-            <a href="form.php" class="btn btn_01">글쓰기</a>
+            <a href="form.php" class="btn btn_01" style="display:none;">글쓰기</a>
         </div>
 
     </section>
@@ -233,4 +233,5 @@ echo "</pre>";
     </script>
 
 <?php
+
 require_once G5_ADMIN_PATH . '/admin.tail.php';
