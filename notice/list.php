@@ -8,7 +8,7 @@ $bo_upload_count = $board['bo_upload_count'];
 $bo_use_category = $board['bo_use_category'];
 $bo_use_search = true;
 
-$g5['title'] = '면허/인증 목록';
+$g5['title'] = $page_title;
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
 $result = Board::get($bo_table, array(), $board['bo_page_rows']);
@@ -103,3 +103,4 @@ $arr_search = array('wr_subject' => '제목');
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
