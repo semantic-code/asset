@@ -55,7 +55,6 @@ print_r($target_wr_id);
 echo "</pre>";
 */
 
-
 ?>
 <style>
     .label_cate { display:inline-block; padding:2px 6px; margin:1px; font-size:11px; border-radius:3px; background:#e0f7fa; border:1px solid #00acc1; color:#006064; }
@@ -105,7 +104,7 @@ echo "</pre>";
                 <tr>
                     <td colspan="<?= $colspan ?>">데이터가 없습니다.</td>
                 </tr>
-                <?php else : foreach ($list as $i => $row): ?>
+                <?php else : foreach ($list as $row): ?>
                 <tr>
                     <td><?= $num-- ?></td>
                     <?php if($is_use_field_1): ?>
@@ -124,7 +123,7 @@ echo "</pre>";
                         <td><?= $row['wr_field_5'] ?></td>
                     <?php endif; ?>
                     <td><?= date('Y-m-d H:i:s', strtotime($row['wr_datetime'])) ?></td>
-                    <td class="<?=$cf['wr_use_cate']?>">
+                    <td>
                         <?php if($cf['wr_cate_list'] && $cf['wr_use_cate']): ?>
                             <select id="ca_name" name="ca_name" data-wr-id="<?= $row['wr_id'] ?>">
                                 <?php foreach ($arr_cate as $cate): ?>
@@ -205,6 +204,7 @@ $(document).ready(function (){
 
 <?php
 include_once(G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
