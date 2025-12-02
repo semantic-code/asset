@@ -8,7 +8,7 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 ?>
 
 <style>
-    .dashboard{max-width:900px; margin: 0 auto;}
+    .dashboard{max-width:900px; /*margin: 0 auto;*/}
     .section-title{font-size:20px;font-weight:bold;margin:20px 0 10px;}
     .divider{height:1px;background:#ddd;margin:10px 0;}
     .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:30px;}
