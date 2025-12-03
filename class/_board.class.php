@@ -110,7 +110,7 @@ class Board {
      *
      * @return array list
      */
-    public static function get_all (
+    public static function all (
         string $bo_table,
         array $where = array(),
         bool $order_by_asc = true,
@@ -314,5 +314,6 @@ class Board {
         <?php return ob_get_clean();
     }
 }
+
 
 
