@@ -82,7 +82,7 @@ $arr_search = array('wr_subject' => '제목');
                 <td headers="mb_list_id" ><?=$row['ca_name']?></td>
                 <td headers="mb_list_id" ><?=$row['wr_subject']?></td>
                 <td headers="mb_list_id" >
-                    <img src="<?=$row['img_src']?>" alt="이미지출력" download="<?=$row['img_name']?>" style="width: 150px;">
+                    <img src="<?=$row['img_src']?>" alt="이미지출력" style="width: 150px;">
                 </td>
                 <td headers="mb_list_id" ><?=$row['wr_use'] == 1 ? '사용' : '미사용'?></td>
                 <td headers="mb_list_id" ><?=date("Y-m-d", strtotime($row['wr_datetime'])) ?></td>
@@ -103,4 +103,5 @@ $arr_search = array('wr_subject' => '제목');
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
