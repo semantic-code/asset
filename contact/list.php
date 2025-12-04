@@ -6,7 +6,6 @@ include_once('_config.php');
 // board
 $bo_use_category = $board['bo_use_category'];
 $bo_category_list = $board['bo_category_list'];
-$bo_upload_count = $board['bo_upload_count'];
 $bo_use_search = true;
 
 $g5['title'] = $page_title;
@@ -63,37 +62,37 @@ $paging = Board::paging($result['total'], $page, $page_rows, 5, "list.php?sca={$
                 </thead>
                 <tbody>
                 <?php if(empty($list)): ?>
-                    <tr>
-                        <td colspan="<?= $colspan ?>">데이터가 없습니다.</td>
-                    </tr>
+                <tr>
+                    <td colspan="<?= $colspan ?>">데이터가 없습니다.</td>
+                </tr>
                 <?php else: foreach ($list as $row): ?>
-                    <tr>
-                        <td><?= $num-- ?></td>
-                        <td><?= $row['wr_name'] ?></td>
-                        <td><?= $row['wr_sort'] ?></td>
-                        <td><?= $row['wr_tel'] ?></td>
-                        <td><?= htmlspecialchars($row['wr_content'] ?? '', ENT_QUOTES) ?></td>
-                        <td><?= date('Y-m-d H:i:s', strtotime($row['wr_datetime'])) ?></td>
-                        <td>
-                            <?php if($bo_use_category && $bo_category_list): ?>
-                                <select id="ca_name" name="ca_name" data-wr-id="<?= $row['wr_id'] ?>">
-                                    <?php foreach ($arr_cate ?? array() as $cate): ?>
-                                        <option value="<?= $cate ?>" <?= get_selected($row['ca_name'], $cate) ?>><?= $cate ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            <?php endif;?>
-                        </td>
+                <tr>
+                    <td><?= $num-- ?></td>
+                    <td><?= $row['wr_name'] ?></td>
+                    <td><?= $row['wr_sort'] ?></td>
+                    <td><?= $row['wr_tel'] ?></td>
+                    <td><?= htmlspecialchars($row['wr_content'] ?? '', ENT_QUOTES) ?></td>
+                    <td><?= date('Y-m-d H:i:s', strtotime($row['wr_datetime'])) ?></td>
+                    <td>
+                        <?php if($bo_use_category && $bo_category_list): ?>
+                            <select id="ca_name" name="ca_name" data-wr-id="<?= $row['wr_id'] ?>">
+                                <?php foreach ($arr_cate ?? array() as $cate): ?>
+                                    <option value="<?= $cate ?>" <?= get_selected($row['ca_name'], $cate) ?>><?= $cate ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php endif;?>
+                    </td>
 
-                        <td>
-                            <div style="display: flex;">
-                                <input type="text" name="wr_memo" value="<?= $row['wr_memo'] ?>" style="width: 90%; margin-right: .5rem;">
-                                <button type="button" class="btn btn_03 btn_memo_update" data-wr-id="<?= $row['wr_id'] ?>" style="width: 90px;">메모저장</button>
-                            </div>
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn_01 btn_delete" data-wr-id="<?= $row['wr_id'] ?>">삭제</button>
-                        </td>
-                    </tr>
+                    <td>
+                        <div style="display: flex;">
+                            <input type="text" name="wr_memo" value="<?= $row['wr_memo'] ?>" style="width: 90%; margin-right: .5rem;">
+                            <button type="button" class="btn btn_03 btn_memo_update" data-wr-id="<?= $row['wr_id'] ?>" style="width: 90px;">메모저장</button>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn_01 btn_delete" data-wr-id="<?= $row['wr_id'] ?>">삭제</button>
+                    </td>
+                </tr>
                 <?php endforeach; endif; ?>
                 </tbody>
             </table>
@@ -101,7 +100,6 @@ $paging = Board::paging($result['total'], $page, $page_rows, 5, "list.php?sca={$
     </div>
 
     <div class="paging"><?= $paging ?></div>
-
 </section>
 
 <script>
@@ -149,3 +147,4 @@ $paging = Board::paging($result['total'], $page, $page_rows, 5, "list.php?sca={$
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
