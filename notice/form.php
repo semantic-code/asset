@@ -8,7 +8,6 @@ $bo_category_list = $board['bo_category_list'];
 // bo_upload_count
 $bo_upload_count = $board['bo_upload_count'];
 
-
 $page_title.= $w === 'u' ? ' 수정 ' : ' 입력';
 $g5['title'] = $page_title;
 include_once (G5_ADMIN_PATH.'/admin.head.php');
@@ -100,3 +99,4 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
