@@ -8,14 +8,16 @@ if ($w === '') {
     $wr_num = get_next_num($target_table);
 
     $set = array(
-        'wr_num'        => $wr_num,
-        'ca_name'       => $ca_name ?? '',
-        'wr_subject'    => $wr_subject ?? '제목-내용없음-' . time(),
-        'wr_content'    => $wr_content ?? '내용-내용없음-' . time(),
-        'wr_datetime'   => date("Y-m-d H:i:s"),
-        'wr_last'       => date("Y-m-d H:i:s"),
-        'wr_ip'         => $_SERVER['REMOTE_ADDR'],
-        'wr_option'     => 'html1',
+        'wr_num'      => $wr_num,
+        'ca_name'     => $ca_name ?? '',
+        'mb_id'       => $mb_id ?? 'guest',
+        'wr_name'     => $wr_name ?? '비회원',
+        'wr_subject'  => $wr_subject ?? '제목-내용없음-' . time(),
+        'wr_content'  => $wr_content ?? '내용-내용없음-' . time(),
+        'wr_datetime' => date("Y-m-d H:i:s"),
+        'wr_last'     => date("Y-m-d H:i:s"),
+        'wr_ip'       => $_SERVER['REMOTE_ADDR'],
+        'wr_option'   => 'html1',
     );
     $set+= array(
         //'wr_use'        => $wr_use,
@@ -70,4 +72,5 @@ if ($w === '') {
     }
 
 }
+
 
