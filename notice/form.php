@@ -107,8 +107,18 @@ if ($w === 'u') {
     </form>
 </section>
 
+<script>
+    function fwrite_submit(f){
+        //captcha
+        <?php echo chk_captcha_js() ;?>
+
+        return true;
+    }
+</script>
+
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
