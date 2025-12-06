@@ -79,8 +79,8 @@ if ($w === 'u') {
             </tr>
             <?php endif; ?>
             <tr>
-                <th scope="row"
-                    style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">사용 여부
+                <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">
+                    사용 여부
                 </th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
                     <label><input type="radio" name="wr_use" value="1" <?= ($list['wr_use'] ?? '1') == '1' ? 'checked' : '' ?>> 사용</label>
@@ -109,5 +109,6 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
