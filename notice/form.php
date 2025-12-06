@@ -2,6 +2,10 @@
 //auth_check_menu($auth, $sub_menu, 'r');
 include_once('./_config.php');
 
+// captcha
+include_once (G5_EDITOR_LIB);
+include_once(G5_CAPTCHA_PATH . '/captcha.lib.php');
+
 // bo_use_category
 $bo_use_category = $board['bo_use_category'];
 $bo_category_list = $board['bo_category_list'];
@@ -90,6 +94,12 @@ if ($w === 'u') {
             </tbody>
         </table>
 
+        <?php if ($board['bo_use_captcha']): ?>
+        <div class="write_div" style="margin-top: 1rem;">
+            <?php echo captcha_html() ;?>
+        </div>
+        <?php endif; ?>
+
         <div class="btn_fixed_top">
             <a href="list.php" class="btn btn_02">목록</a>
             <button type="submit" class="btn btn_01">저장</button>
@@ -99,4 +109,5 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
