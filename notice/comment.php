@@ -14,7 +14,7 @@ while ($row = sql_fetch_array($result)){
         <h3 class="comment-title">댓글</h3>
 
         <?php if ($comment): foreach ($comment as $row): ?>
-            <?php if ($row['wr_id'] === $co_id): ?>
+            <?php if ($row['wr_id'] == $co_id): ?>
             <form id="frm" method="post" action="comment_update.php">
                 <input type="hidden" name="wr_id" value="<?= $row['wr_parent'] ?>">
                 <input type="hidden" name="co_id" value="<?= $co_id ?>">
@@ -83,5 +83,6 @@ while ($row = sql_fetch_array($result)){
     .comment-submit-wrap{text-align:right;margin-top:8px;}
     .btn-submit{padding:6px 14px;background:#333;color:#fff;border:none;border-radius:5px;font-size:13px;cursor:pointer;}
 </style>
+
 
 
