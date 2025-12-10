@@ -81,5 +81,6 @@ while ($row = sql_fetch_array($result)){
     .comment-write{margin-top:15px;}
     .comment-textarea{width:100%;height:80px;margin-bottom:10px;padding:10px;border:1px #ccc solid;border-radius:4px;font-size:14px;resize:vertical;}
     .comment-submit-wrap{text-align:right;margin-top:8px;}
-    .btn-submit{padding:6px 14px;background:#333;color:#fff;border:none;border-radius:4px;font-size:13px;cursor:pointer;}
+    .btn-submit{padding:6px 14px;background:#333;color:#fff;border:none;border-radius:5px;font-size:13px;cursor:pointer;}
 </style>
+
