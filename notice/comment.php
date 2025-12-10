@@ -46,7 +46,7 @@ while ($row = sql_fetch_array($result)){
                     <div class="comment-content"><?= $row['wr_content'] ?></div>
                     <div class="comment-actions" style="display: flex;">
                         <a href="view.php?w=r&wr_id=<?= $row['wr_parent']  ?>&co_id=<?= $row['wr_id'] ?>" class="btn-edit">수정</a>
-                        <button type="submit" class="btn-edit" name="action" value="delete">삭제</button>
+                        <button type="submit" class="btn-del" name="action" value="delete">삭제</button>
                     </div>
                 </div>
             </form>
@@ -83,4 +83,5 @@ while ($row = sql_fetch_array($result)){
     .comment-submit-wrap{text-align:right;margin-top:8px;}
     .btn-submit{padding:6px 14px;background:#333;color:#fff;border:none;border-radius:5px;font-size:13px;cursor:pointer;}
 </style>
+
 
