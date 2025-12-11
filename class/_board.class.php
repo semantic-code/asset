@@ -203,10 +203,13 @@ class Board {
         $data['file'] = get_file($bo_table, $wr_id);
 
         // --------------------------------------------------
-        // 4) 이전글, 다음글
+        // 4) 이전글, 다음글 (카테고리 자동 적용)
         // --------------------------------------------------
-        $prev = sql_fetch("SELECT wr_id, wr_subject FROM {$target_table} WHERE wr_id < '{$wr_id}' AND wr_is_comment = 0 ORDER BY wr_id DESC LIMIT 1");
-        $next = sql_fetch("SELECT wr_id, wr_subject FROM {$target_table} WHERE wr_id > '{$wr_id}' AND wr_is_comment = 0 ORDER BY wr_id ASC LIMIT 1");
+        $ca_name = $data['ca_name'] ?? '';
+        $sca_sql = $ca_name !== '' ? "AND ca_name = '{$ca_name}'" : "";
+        
+        $prev = sql_fetch("SELECT wr_id, wr_subject FROM {$target_table} WHERE wr_id < '{$wr_id}' AND wr_is_comment = 0 {$sca_sql} ORDER BY wr_id DESC LIMIT 1");
+        $next = sql_fetch("SELECT wr_id, wr_subject FROM {$target_table} WHERE wr_id > '{$wr_id}' AND wr_is_comment = 0 {$sca_sql} ORDER BY wr_id ASC LIMIT 1");
 
         $data['prev'] = $prev ?? null;
         $data['next'] = $next ?? null;
@@ -314,6 +317,7 @@ class Board {
         <?php return ob_get_clean();
     }
 }
+
 
 
 
