@@ -6,7 +6,7 @@ if ($action === 'insert') {
     //if (empty($wr_content)) goto_url("view.php?wr_id={$wr_id}");
 
     // wr_num
-    $sql = "SELECT wr_num FROM {$target_table} WHERE wr_is_comment = 1 AND wr_parent = {$wr_id}";
+    $sql = "SELECT wr_num FROM {$target_table} WHERE wr_is_comment = 0 AND wr_parent = {$wr_id}";
     $row = sql_fetch($sql);
     $wr_num = $row['wr_num'];
 
@@ -55,3 +55,4 @@ if ($action === 'insert') {
 
     if ($delete) goto_url("view.php?wr_id={$wr_id}");
 }
+
