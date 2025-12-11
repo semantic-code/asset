@@ -60,7 +60,7 @@ if (!in_array($mode, array_merge($access_mode, $process_mode))) {
 
 // 실제 include 파일명 변환
 $include_file = $ex_mode[$mode] ?? $mode;
-$path = $_SERVER['DOCUMENT_ROOT']. "/ {$location}/{$include_file}.php";
+$path = $_SERVER['DOCUMENT_ROOT']. "/{$location}/{$include_file}.php";
 
 // 파일 확인
 if (file_exists($path)) {
