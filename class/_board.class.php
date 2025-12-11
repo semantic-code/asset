@@ -48,7 +48,7 @@ class Board {
         $sfl = $_GET['sfl'] ?? '';
         $stx = $_GET['stx'] ?? '';
 
-        if ($sfl && $stx) {
+        if ($sfl && isset($stx) && $stx !== '') {
             // or 검색
             if (strpos($sfl, '|') !== false) {
                 $parts =  array();
@@ -314,6 +314,7 @@ class Board {
         <?php return ob_get_clean();
     }
 }
+
 
 
 
