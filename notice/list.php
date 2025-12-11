@@ -10,7 +10,7 @@ $bo_use_search = true;
 $g5['title'] = $page_title;
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
-$result = Board::get($bo_table, array(), $board['bo_page_rows']);
+$result = Board::get($bo_table, array('wr_is_comment = 0'), $board['bo_page_rows']);
 $list = $result['list'];
 $num = $result['num'];
 
@@ -102,3 +102,4 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
