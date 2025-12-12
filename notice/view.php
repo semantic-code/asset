@@ -30,6 +30,8 @@ var_dump($co_id);
         <div class="view-images">
             <?php foreach ($file_list as $file): ?>
             <?php if (!is_array($file)) continue; ?>
+            <?php if (empty($file['file'])) continue; ?>
+            <?php if (empty($file['image_type'])) continue; ?>
                 <div class="view-img-box">
                     <img src="<?= $file['path'] . '/' . $file['file'] ?>" alt="<?= $file['source'] ?>">
                 </div>
@@ -81,4 +83,5 @@ var_dump($co_id);
 <?php
 
 include_once G5_ADMIN_PATH . '/admin.tail.php';
+
 
