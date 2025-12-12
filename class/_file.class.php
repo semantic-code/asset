@@ -68,7 +68,7 @@ class File {
                 'bf_filesize'=> $files['size'][$i],
                 'bf_width'   => $width,
                 'bf_height'  => $height,
-                bf_type='{$bf_type}'
+                'bf_type'    => $bf_type, 
                 'bf_datetime'=> date('Y-m-d H:i:s'),
             );
 
@@ -171,6 +171,7 @@ class File {
         return $files;
     }
 }
+
 
 
 
