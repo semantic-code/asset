@@ -68,14 +68,17 @@ var_dump($co_id);
     .view-meta{display:flex;gap:15px;font-size:14px;color:#666;margin-bottom:20px;}
     .view-name{font-weight:bold;color:#333;}
     .view-content{font-size:15px;line-height:1.6;margin-bottom:25px;}
+    .view-images{display:flex;gap:10px;margin-bottom:25px;flex-wrap:wrap;}
+    .view-img-box{border:1px solid #ddd;padding:5px;border-radius:4px;background:#fafafa;}
+    .view-images img{display:block;max-width:150px;height:auto;border-radius:3px;}
     .view-files{margin-bottom:25px;}
     .files-title{font-size:16px;font-weight:bold;margin-bottom:8px;}
     .view-files ul{margin:0;padding:0;list-style:none;}
     .view-files li{margin-bottom:5px;}
-    .view-files a{text-decoration:none;color:#0066cc;}
-    .view-files a:hover{text-decoration:underline;}
+    .view-files a{text-decoration:none;color:#0066cc;}    
 </style>
 
 <?php
 
 include_once G5_ADMIN_PATH . '/admin.tail.php';
+
