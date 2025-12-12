@@ -1,6 +1,7 @@
 <?php
 $colspan = 8;
 include_once('./_config.php');
+$sub_menu = '500200';
 
 // board
 $bo_upload_count = $board['bo_upload_count'];
@@ -67,10 +68,10 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
 
                 <!-- 버튼 -->
                 <div class="gallery-btn">
-                    <a href="<?= $row['href'] ?>" class="btn-view">보기</a>
+                    <a href="<?= $row['href'] ?>" class="btn btn_03">보기</a>
                     <a href="list_update.php?w=d&wr_id=<?= $row['wr_id'] ?>"
                        onclick="return confirm('삭제하시겠습니까?')"
-                       class="btn-del">삭제</a>
+                       class="btn btn_02">삭제</a>
                 </div>
 
             </div>
@@ -92,12 +93,9 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
     .gallery-use {font-size:13px;color:#333;font-weight:500;margin-bottom:8px;}
     .gallery-date {font-size:12px;color:#aaa;margin-bottom:10px;}
     .gallery-btn {display:flex;gap:8px;margin-top:auto;}
-    .gallery-btn a {flex:1;text-align:center;padding:6px 0;border-radius:4px;font-size:13px;text-decoration:none;}
-    .gallery-btn .btn-view {background:#007bff;color:#fff;}
-    .gallery-btn .btn-del {background:#dc3545;color:#fff;}
+    .gallery-btn a {flex:1;text-align:center;}
 </style>
 
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
-
