@@ -83,19 +83,5 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
     <div class="paging"><?= $paging ?></div>
 </section>
 
-<style>
-    .gallery-wrap {display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px;margin-top:20px;}
-    .gallery-item {border:1px solid #ddd;border-radius:8px;background:#fff;padding:15px;display:flex;flex-direction:column;}
-    .gallery-item img {width:100%;height:180px;object-fit:cover;border-radius:6px;border:1px solid #eee;}
-    .gallery-info {margin-top:10px;}
-    .gallery-title {font-size:16px;font-weight:600;margin-bottom:5px;}
-    .gallery-cate {font-size:13px;color:#777;margin-bottom:3px;}
-    .gallery-use {font-size:13px;color:#333;font-weight:500;margin-bottom:8px;}
-    .gallery-date {font-size:12px;color:#aaa;margin-bottom:10px;}
-    .gallery-btn {display:flex;gap:8px;margin-top:auto;}
-    .gallery-btn a {flex:1;text-align:center;}
-</style>
-
-
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
