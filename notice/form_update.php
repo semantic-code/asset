@@ -1,7 +1,7 @@
 <?php
 include_once('./_config.php');
 
-$file = $_FILES['bf_file'];
+$files = $_FILES['bf_file'];
 
 if ($w === '') {
 
@@ -25,7 +25,7 @@ if ($w === '') {
 
     $set += Query::get_empty_fields($target_table);
 
-    $sql = "INSERT INTO {$target_table} SET\n". Query::build_query($set);
+    $sql = "INSERT INTO {$target_table} SET\n". Query::build_query($set, $board['bo_use_dhtml_editor'] ? 'wr_content' : '');
     $insert = sql_query($sql);
 
     if ($insert) {
@@ -33,7 +33,7 @@ if ($w === '') {
         sql_query(" UPDATE {$target_table} SET wr_parent = '{$wr_id}' WHERE wr_id = '{$wr_id}' ");
         sql_query(" UPDATE {$g5['board_table']} SET bo_count_write = bo_count_write + 1 WHERE bo_table = '{$bo_table}' ");
 
-        if (!File::attach_files($file, $bo_table, $wr_id)) alert("파일 저장 실패", "form.php?w=u&wr_id={$wr_id}");
+        if (!File::attach_files($files, $bo_table, $wr_id)) alert("파일 저장 실패", "form.php?w=u&wr_id={$wr_id}");
 
         goto_url("form.php?w=u&wr_id={$wr_id}");
 
@@ -51,7 +51,7 @@ if ($w === '') {
         'wr_last'       => date("Y-m-d H:i:s"),
     );
 
-    $sql = "UPDATE {$target_table} SET\n". Query::build_query($set) . "\nWHERE wr_id = {$wr_id} ";
+    $sql = "UPDATE {$target_table} SET\n". Query::build_query($set, $board['bo_use_dhtml_editor'] ? 'wr_content' : '') . "\nWHERE wr_id = {$wr_id} ";
     $update = sql_query($sql);
 
     if ($update) {
@@ -61,7 +61,7 @@ if ($w === '') {
         }
 
         // 파일 업로드
-        if (!File::attach_files($file ?? array(), $bo_table, $wr_id)){
+        if (!File::attach_files($files ?? array(), $bo_table, $wr_id)){
             alert("파일 업로드를 실패했습니다.", "list.php");
         }
 
