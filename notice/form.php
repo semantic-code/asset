@@ -18,11 +18,11 @@ include_once (G5_ADMIN_PATH.'/admin.head.php');
 
 if ($w === 'u') {
     $list = Board::view($bo_table, $wr_id);
-    $file = $list['file'];
+    $files = $list['file'];
 
 } else {
     $list = array();
-    $file = array();
+    $files = array();
 }
 ?>
 
@@ -66,15 +66,23 @@ if ($w === 'u') {
             <tr>
                 <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">이미지 업로드</th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
-                    <?= Html::file_upload_list_html($file, $bo_upload_count, "image/*") ?>
+                    <?= Html::file_upload_list_html($files, $bo_upload_count, "image/*") ?>
                 </td>
             </tr>
-            <?php if ($file[0]['source']): ?>
+            <?php if ($files[0]['image_type']): ?>
             <tr>
                 <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">등록된 이미지</th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
-                    <?php $img_src = "{$file[0]['path']}/{$file[0]['file']}";?>
-                    <img src="<?= $img_src ?>" alt="등록된 이미지" style="padding: 1rem; width: 200px;">
+                    <div class="view-images">
+                        <?php foreach ($files as $file): ?>
+                            <?php if (!is_array($file)) continue; ?>
+                            <?php if (empty($file['file'])) continue; ?>
+                            <?php if (empty($file['image_type'])) continue; ?>
+                            <div class="view-img-box">
+                                <img src="<?= $file['path'] . '/' . $file['file'] ?>" alt="<?= $file['source'] ?>">
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </td>
             </tr>
             <?php endif; ?>
@@ -107,6 +115,12 @@ if ($w === 'u') {
     </form>
 </section>
 
+<style>
+    .view-images{display:flex;gap:10px;margin-bottom:25px;flex-wrap:wrap;}
+    .view-img-box{border:1px solid #ddd;padding:5px;border-radius:4px;background:#fafafa;}
+    .view-images img{display:block;max-width:150px;height:auto;border-radius:3px;}
+</style>
+
 <script>
     function fwrite_submit(f){
         //captcha
@@ -118,7 +132,3 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
-
-
-
-
