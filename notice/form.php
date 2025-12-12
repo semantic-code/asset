@@ -130,12 +130,6 @@ if ($w === 'u') {
     </form>
 </section>
 
-<style>
-    .view-images{display:flex;gap:10px;margin-bottom:25px;flex-wrap:wrap;}
-    .view-img-box{/*border:1px solid #ddd*/;padding:5px;border-radius:4px;background:#fafafa;}
-    .view-images img{display:block;max-width:150px;height:auto;border-radius:3px;}
-</style>
-
 <script>
     function fwrite_submit(f){
          //editor
@@ -149,6 +143,7 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
