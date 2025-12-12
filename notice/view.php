@@ -25,6 +25,18 @@ var_dump($co_id);
         <?= nl2br($view['wr_content']) ?>
     </div>
 
+    <!-- 이미지 미리보기 -->
+    <?php if (!empty($file_list)): ?>
+        <div class="view-images">
+            <?php foreach ($file_list as $file): ?>
+            <?php if (!is_array($file)) continue; ?>
+                <div class="view-img-box">
+                    <img src="<?= $file['path'] . '/' . $file['file'] ?>" alt="<?= $file['source'] ?>">
+                </div>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
     <!-- 첨부파일 -->
     <?php if (!empty($file_list)): ?>
         <div class="view-files">
@@ -65,4 +77,5 @@ var_dump($co_id);
 </style>
 
 <?php
+
 include_once G5_ADMIN_PATH . '/admin.tail.php';
