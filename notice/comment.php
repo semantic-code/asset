@@ -21,7 +21,7 @@ while ($row = sql_fetch_array($result)){
                 <div class="comment-item">
                     <div class="comment-header">
                         <span class="comment-name"><?= $row['wr_name'] ?></span>
-                        <span class="comment-date"><?= $row['datetime'] ?></span>
+                        <span class="comment-date"><?= $row['wr_datetime'] ?></span>
                     </div>
                     <textarea name="wr_content" class="comment-textarea"><?= $row['wr_content'] ?></textarea>
                     <div class="comment-actions" style="display: flex;">
@@ -82,6 +82,7 @@ while ($row = sql_fetch_array($result)){
     .comment-submit-wrap{text-align:right;margin-top:8px;}
     .btn-submit{padding:6px 14px;background:#333;color:#fff;border:none;border-radius:5px;font-size:13px;cursor:pointer;}
 </style>
+
 
 
 
