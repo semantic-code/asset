@@ -66,20 +66,3 @@ while ($row = sql_fetch_array($result)){
     </div>
     <?php endif; ?>
 </section>
-
-<style>
-    .comment-wrap{padding:15px;border:1px #ddd solid;margin-top:20px;border-radius:5px;}
-    .comment-title{font-size:16px;font-weight:bold;margin-bottom:12px;}
-    .comment-item{padding:10px;border-bottom:1px #eee solid;}
-    .comment-header{display:flex;gap:10px;font-size:13px;color:#666;margin-bottom:5px;}
-    .comment-date{margin-bottom: .5rem;}
-    .comment-name{font-weight:bold;color:#333;}
-    .comment-content{font-size:14px;margin-bottom:8px;}    
-    .comment-actions{display:flex;gap:8px;}
-    .btn-edit,.btn-del,.btn-update,.btn-cancel{padding:5px 10px;font-size:12px;border:1px #ccc solid;background:#f5f5f5;cursor:pointer;}
-    .comment-write{margin-top:15px;}
-    .comment-textarea{width:100%;height:80px;margin-bottom:10px;padding:10px;border:1px #ccc solid;border-radius:4px;font-size:14px;resize:vertical;}
-    .comment-submit-wrap{text-align:right;margin-top:8px;}
-    .btn-submit{padding:6px 14px;background:#333;color:#fff;border:none;border-radius:5px;font-size:13px;cursor:pointer;}
-</style>
-
