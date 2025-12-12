@@ -19,14 +19,13 @@ $page_title.= $w === 'u' ? ' 수정 ' : ' 입력';
 $g5['title'] = $page_title;
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
+$list = array();
+$files = array();
 if ($w === 'u') {
     $list = Board::view($bo_table, $wr_id);
     $files = $list['file'];
-
-} else {
-    $list = array();
-    $files = array();
 }
+    
 ?>
 
 <section class="admin_form_wrap" style="max-width:100%; margin:0 auto;">
@@ -150,4 +149,5 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
