@@ -56,13 +56,17 @@ class File {
             $width = $info[0] ?? 0;
             $height = $info[1] ?? 0;
 
+            // 이미지 여부
+            $bf_type = ($width > 0) ? 1 : 0;
+
             $sql = "
                 INSERT INTO {$g5['board_file_table']}
                 SET bo_table='{$bo_table}', wr_id='{$wr_id}', bf_no='{$bf_no}',
                     bf_source='" . addslashes($original_name) . "',
                     bf_file='{$new_name}',
                     bf_filesize='{$files['size'][$i]}',
-                    bf_width='{$width}', bf_height='{$height}', bf_datetime=NOW()
+                    bf_width='{$width}', bf_height='{$height}', bf_type='{$bf_type}'
+                    bf_datetime=NOW()
             ";
             sql_query($sql);
             $bf_no++;
@@ -103,5 +107,6 @@ class File {
         return true;
     }
 }
+
 
 
