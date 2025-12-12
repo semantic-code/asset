@@ -249,26 +249,26 @@ class Html {
         <style>
             .ooc-search{display:flex;flex-direction:column;gap:8px;flex:1; margin-bottom: 1rem;}
             .ooc-search-row{display:flex;width:70%;align-items:center;gap:8px;}
-            .ooc-search .sel,.admin-search .inp{height:30px;border:1px solid #d1d5db;border-radius:6px;padding:0 10px;background:#fff;}
-            .ooc-search .inp{height:30px;min-width:220px;}
-            .ooc-search .inp:focus,.admin-search .sel:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15);outline:0;}
+            .ooc-search .sel,.ooc-search .inp{flex:3;height:30px;border:1px solid #d1d5db;border-radius:6px;padding:0 10px;background:#fff;}
+            .ooc-search .inp{min-width:220px;}
+            .ooc-search .inp:focus,.ooc-search .sel:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15);outline:0;}
             .btn{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border-radius:6px;text-decoration:none;cursor:pointer;user-select:none;}
-            .btn-primary{background:#3f51b5;color:#fff;border:1px solid #1d4ed8;}
-            .btn-secondary{background:#9eacc6;color:#fff!important;border:1px solid #d1d5db;text-align:center;}
+            .btn-primary{flex:1;background:#3f51b5;color:#fff;border:1px solid #1d4ed8;}
+            .btn-secondary{flex:1;background:#9eacc6;color:#fff!important;border:1px solid #d1d5db;text-align:center;}
         </style>
         <form method="get" action="<?= $action ?>" class="ooc-search">
             <?= $hidden_input ?>
 
             <!-- 검색 줄 -->
             <div class="ooc-search-row">
-                <select name="sfl" id="search-field" class="sel" style="flex:3;">
+                <select name="sfl" id="search-field" class="sel">
                     <?php foreach ($arr_search as $field => $option): ?>
                         <option value="<?= $field ?>" <?= get_selected($sfl, $field) ?>><?= $option ?></option>
                     <?php endforeach; ?>
                 </select>
-                <input type="text" name="stx" id="search-text" class="inp" placeholder="검색어 입력" value="<?= $stx ?>" style="flex:3;">
-                <button type="submit" class="btn btn-primary" style="flex:1;">검색</button>
-                <a href="<?= $init_url ?>" class="btn btn-secondary" style="flex:1;">초기화</a>
+                <input type="text" name="stx" id="search-text" class="inp" placeholder="검색어 입력" value="<?= $stx ?>">
+                <button type="submit" class="btn btn-primary">검색</button>
+                <a href="<?= $init_url ?>" class="btn btn-secondary">초기화</a>
             </div>
         </form>
         <?php return ob_get_clean();
@@ -345,6 +345,3 @@ class Html {
         <?php return ob_get_clean();
     }
 }
-
-
-
