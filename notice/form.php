@@ -2,9 +2,12 @@
 //auth_check_menu($auth, $sub_menu, 'r');
 include_once('./_config.php');
 
-// captcha
-include_once (G5_EDITOR_LIB);
+// editor, captcha
+//include_once (G5_EDITOR_LIB);
 include_once(G5_CAPTCHA_PATH . '/captcha.lib.php');
+
+// use_dhtml_editor
+//$use_dhtml_editor = $board['bo_use_dhtml_editor'];
 
 // bo_use_category
 $bo_use_category = $board['bo_use_category'];
@@ -57,12 +60,25 @@ if ($w === 'u') {
                 </td>
             </tr>
             <?php endif; ?>
+
+            <?php // wr_content textarea ?>
             <tr style="display: none;">
                 <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">설명</th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
                     <textarea name="" rows="5" style="width:100%; padding:8px; border:1px solid #ccc; border-radius:4px;"></textarea>
                 </td>
             </tr>
+
+            <?php // wr_content editor ?>
+            <tr>
+                <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">내용</th>
+                <td style="padding:10px; border-bottom:1px solid #ddd;">
+                    <div class="wr_content <?= $board['bo_select_editor'] ?>">
+                        <?= editor_html('wr_content', $list['wr_content'] ?? '', $use_dhtml_editor) ?>
+                    </div>
+                </td>
+            </tr>
+                
             <tr>
                 <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">이미지 업로드</th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
@@ -123,12 +139,15 @@ if ($w === 'u') {
 
 <script>
     function fwrite_submit(f){
+         //editor
+        <?php //echo get_editor_js('wr_content', $use_dhtml_editor);?>
+        <?php //echo chk_editor_js('wr_content', $use_dhtml_editor);?>
+
         //captcha
         <?php echo chk_captcha_js() ;?>
-
-        return true;
     }
 </script>
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
