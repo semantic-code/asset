@@ -65,7 +65,7 @@ var_dump($co_id);
 <?php include_once "comment.php"; ?>
 
 <style>
-    .view-wrap{padding:20px;border:1px #ddd solid;border-radius:5px;max-width:900px;}
+    .view-wrap{padding:20px;/*border:1px #ddd solid;*/border-radius:5px;max-width:900px;}
     .view-subject{font-size:22px;font-weight:bold;margin-bottom:10px;}
     .view-meta{display:flex;gap:15px;font-size:14px;color:#666;margin-bottom:20px;}
     .view-name{font-weight:bold;color:#333;}
@@ -83,5 +83,6 @@ var_dump($co_id);
 <?php
 
 include_once G5_ADMIN_PATH . '/admin.tail.php';
+
 
 
