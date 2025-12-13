@@ -9,11 +9,11 @@ class Html {
     /**
      * 파일 리스트 + 첨부 HTML 생성 (패딩형, 미리보기 구조)
      *
-     * @param array     $file         그누보드 파일정보 배열 ($file)
-     * @param int|null  $upload_count 업로드 허용 개수 (기본값 2)
-     * @param string $accept          input file accept
-     * @param string    $title        제목 텍스트 (기본: "파일첨부")
-     * @return string HTML 문자열
+     * @param array    $file         그누보드 파일정보 배열 ($file)
+     * @param int|null $upload_count 업로드 허용 개수 (기본값 2)
+     * @param string   $accept       input file accept
+     * @param string   $title        제목 텍스트 (기본: "파일첨부")
+     * @return string  HTML 문자열
      */
     public static function file_upload_list_html(
         array $file = array(),
@@ -345,4 +345,3 @@ class Html {
         <?php return ob_get_clean();
     }
 }
-
