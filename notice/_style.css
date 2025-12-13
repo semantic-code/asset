@@ -3,7 +3,7 @@
    버튼 공통 구조
 ================================ */
 .btn-basic{padding:6px 12px;font-size:13px;border-radius:4px;cursor:pointer;display:inline-block;text-align:center;border:1px solid transparent;}
-.btn-black{background:#000;border-color:#000;color:#fff!important;}
+.btn-black{background:#212529;border-color:#212529;color:#fff!important;}
 .btn-green{background:#28a745;border-color:#28a745;color:#fff!important;}
 .btn-red{background:#ff4081;border-color:#ff4081;color:#fff!important;}
 .btn-gray{background:#9eacc6;border-color:#9eacc6;color:#fff!important;}
