@@ -252,7 +252,7 @@ class Html {
             .ooc-search .sel,.ooc-search .inp{flex:3;height:30px;border:1px solid #d1d5db;border-radius:6px;padding:0 10px;background:#fff;}
             .ooc-search .inp{min-width:220px;}
             .ooc-search .inp:focus,.ooc-search .sel:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15);outline:0;}
-            .btn{display:inline-flex;align-items:center;justify-content:center;height:30px;padding:0 12px;border-radius:6px;text-decoration:none;cursor:pointer;user-select:none;}
+            .btn{display:inline-flex;align-items:center;justify-content:center;height:30px!important;padding:0 12px;border-radius:6px;line-height:30px!important;text-decoration:none;cursor:pointer;user-select:none;}
             .btn-primary{flex:1;background:#3f51b5;color:#fff;border:1px solid #1d4ed8;}
             .btn-secondary{flex:1;background:#9eacc6;color:#fff!important;border:1px solid #d1d5db;text-align:center;}
         </style>
@@ -345,3 +345,4 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
