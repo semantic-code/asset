@@ -252,12 +252,15 @@ class Board {
         $symbol_next  = '&raquo;';         // » 또는 '다음'
         $symbol_last  = '&raquo;&raquo;';  // »» 또는 '마지막'
 
+        // 그누보드 기본 색상 : #3f51b5
+        $admin_color = '#3f51b5';
+        $default_color = '#A07C6A';
+
         ob_start();?>
 
         <?php if ($style_type === 1) : ?>
         <style>
-            /** 그누보드 기본 색상 : #3f51b5 **/
-            <?php $page_button_color = defined('G5_IS_ADMIN') ? '#3f51b5' : '#A07C6A'; ?>
+            <?php $page_button_color = defined('G5_IS_ADMIN') ? $admin_color : $default_color; ?>
             :root{--page-button-color:<?= $page_button_color?>;}
             .pager a,.pager span {display:inline-block;padding:4px 8px;margin:0 2px;border:1px solid var(--page-button-color, #3f51b5);border-radius:5px;color:var(--page-button-color, #3f51b5);text-decoration:none;font-size:12px;}
             .pager .active {background:var(--page-button-color, #3f51b5);color:#fff;border-color:var(--page-button-color, #3f51b5);}
@@ -265,8 +268,7 @@ class Board {
         </style>
     <?php elseif ($style_type === 2) : ?>
         <style>
-            /** 그누보드 기본 색상 : #3f51b5 **/
-            <?php $page_button_color = defined('G5_IS_ADMIN') ? '#3f51b5' : '#A07C6A'; ?>
+            <?php $page_button_color = defined('G5_IS_ADMIN') ? $admin_color : $default_color; ?>
             :root{--page-button-color:<?= $page_button_color?>;}
             .pager a,.pager span {display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;margin:0 3px;border-radius:50%;border:1px solid var(--page-button-color, #3f51b5);color:var(--page-button-color, #3f51b5);background:#fff;text-decoration:none;font-size:13px;transition:all .2s;}
             .pager .active {background:var(--page-button-color, #3f51b5);color:#fff;border-color:var(--page-button-color, #3f51b5);}
@@ -317,8 +319,3 @@ class Board {
         <?php return ob_get_clean();
     }
 }
-
-
-
-
-
