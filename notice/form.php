@@ -29,7 +29,7 @@ if ($w === 'u') {
 ?>
 
 <section class="admin_form_wrap" style="max-width:100%; margin:0 auto;">
-    <form name="fadminform" id="fadminform" method="post" action="form_update.php" enctype="multipart/form-data">
+    <form name="fadminform" id="fadminform" method="post" action="form_update.php" enctype="multipart/form-data" onsubmit="return fwrite_submit(this)">
         <input type="hidden" name="w" value="<?= $w ?? '' ?>">
         <input type="hidden" name="bo_table" value="<?= $bo_table ?>">
         <input type="hidden" name="wr_id" value="<?= $wr_id ?>">
@@ -143,6 +143,7 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
