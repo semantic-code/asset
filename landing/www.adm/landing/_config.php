@@ -7,9 +7,8 @@ while (!file_exists($path.'_common.php') && realpath($path) !== '/') {$path .= '
 include_once $path.'_common.php';
 
 $sub_menu = '700100';
-$bo_table = 'landing';
+$bo_table = $location ?? 'landing';
 $page_title = '랜딩페이지';
 
 $target_table = $g5['write_prefix'] . $bo_table;
 $board = get_board_db($bo_table);
-
