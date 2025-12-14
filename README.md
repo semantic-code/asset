@@ -5,8 +5,9 @@
 - landing, landing_log : 폴더로 구분한 그누보드 게시판 (랜딩페이지, 랜딩DB 별도 관리)
 - history : 어드민용 연혁게시판
 
-  ### 수정해야할 부분
-  - require_once '../common.php'; => require_once $_SERVER['DOCUMENT_ROOT'] . '/common.php';
+  ### write_update.php 사용안할 시 수정해야할 부분
+  - _common.php
+  - require_once '../common.php'; => require_once __DIR__ . '/common.php';
  
   ### write_update.php 사용시
 
