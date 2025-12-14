@@ -207,15 +207,17 @@ class Html {
      * @param string $sca
      * @param string $sfl
      * @param string $stx
+     * @param bool $include_style 스타일 사용여부
      *
      * @return string
      */
     public static function search (
-        array $arr_search  = array(),
-        array $keep_key = array('sca'),
+        array $arr_search   = array(),
+        array $keep_key     = array('sca'),
         string $sca         = '',
         string $sfl         = '',
         string $stx         = '',
+        bool $include_style = true,
     ): string
     {
         $action = strtok($_SERVER['REQUEST_URI'], '?');
@@ -246,6 +248,7 @@ class Html {
         if (!$stx) $stx = $_GET['stx'] ?? '';
 
         ob_start(); ?>
+        <?php if ($include_style): ?>
         <style>
             .ooc-search{display:flex;flex-direction:column;gap:8px;flex:1; margin-bottom: 1rem;}
             .ooc-search-row{display:flex;width:70%;align-items:center;gap:8px;}
@@ -256,6 +259,7 @@ class Html {
             .btn-primary{flex:1;background:#3f51b5;color:#fff;border:1px solid #1d4ed8;}
             .btn-secondary{flex:1;background:#9eacc6;color:#fff!important;border:1px solid #d1d5db;text-align:center;}
         </style>
+        <?php endif; ?>
         <form method="get" action="<?= $action ?>" class="ooc-search">
             <?= $hidden_input ?>
 
@@ -291,13 +295,15 @@ class Html {
      * @param array  $arr_cate          카테고리 목록 배열
      * @param string $base_query_string URL 기본 GET 파라미터 문자열 (key=value&key2=value 형식)
      * @param string $sca               현재 선택된 카테고리 (없으면 $_GET['sca'] 자동 적용)
+     * @param bool $include_style       style 사용 여부
      *
      * @return string                   카테고리 탭 HTML 문자열
      */
     public static function category (
-        array  $arr_cate = array(),
+        array  $arr_cate          = array(),
         string $base_query_string = '',
-        string $sca = ''
+        string $sca               = '',
+        bool $include_style       = true,
     ): string {
 
         if (empty($arr_cate)) return '';
@@ -314,21 +320,20 @@ class Html {
         $prefix = $base_query_string ? "{$base_query_string}&" : '';
 
         ob_start(); ?>
+        <?php if ($include_style): ?>
         <style>
             .admin-toolbar{display:flex;gap:12px;padding:12px 16px;border:1px solid #e5e7eb;border-radius:8px;background:#fafafa;margin:10px 0 15px;}
             .admin-tabs{display:flex;gap:6px;list-style:none;padding:0;margin:0;}
             .admin-tabs .tab{padding:5px 10px;border:1px solid #d1d5db;border-radius:6px;background:#fff;color:#374151;text-decoration:none;}
             .admin-tabs .tab.is-active{background:#3f51b5;color:#fff;border-color:#1d4ed8;}
         </style>
-
+        <?php endif; ?>
         <div class="admin-toolbar">
             <ul class="admin-tabs">
-
                 <!-- 전체 -->
                 <li>
                     <a href="?<?= $prefix ?>sca=" class="tab <?= $sca === '' ? 'is-active' : '' ?>">전체</a>
                 </li>
-
                 <!-- 카테고리 -->
                 <?php foreach ($arr_cate as $cate): ?>
                     <li>
@@ -338,10 +343,8 @@ class Html {
                         </a>
                     </li>
                 <?php endforeach; ?>
-
             </ul>
         </div>
-
         <?php return ob_get_clean();
     }
 }
