@@ -66,3 +66,4 @@ var_dump($co_id);
 
 <?php
 include_once G5_ADMIN_PATH . '/admin.tail.php';
+
