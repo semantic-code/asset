@@ -7,3 +7,30 @@
 
   ### 수정해야할 부분
   - require_once '../common.php'; => require_once $_SERVER['DOCUMENT_ROOT'] . '/common.php';
+ 
+  ### write_update.php 사용시
+
+  1. 입력 모드
+   - $token = get_token
+   - session : set_session("ss_write_{$bo_table}_token", $token);
+   - input hidden : name = token, value = $token
+   - input hidden : name = board, value = 'notice'
+     
+  2. 수정 모드
+   - session : set_session("ss_bo_table", 'notice');
+   - session : set_session('ss_wr_id', 10);
+   - input hidden : name = wr_id, value = 10
+   - input hidden : name = board , value = 'notice'
+   - input hidden : name = w, value = u
+  
+  /skin/board/notice/write_update.skin.php
+     - if($custom_url) goto_url($custom_url);
+  
+  /skin/board/notice/delete.tail.skin.php
+     - if($custom_delete_url) goto_url($custom_delete_url);
+  
+  /bbs/write_update.head.skin.php 생성
+     - if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
+     - 커스텀시 '자동등록방지 숫자가 틀렸습니다.' 안 나오도록 예외처리
+     - if(in_array($bo_table, array('contact'))) $is_guest = false;
+
