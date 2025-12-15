@@ -4,6 +4,7 @@
 - contact : 폴더로 구분한 그누보드 상담문의 게시판 (상담문의 게시판 단독 사용)
 - landing, landing_log : 폴더로 구분한 그누보드 게시판 (랜딩페이지, 랜딩DB 별도 관리)
 - history : 어드민용 연혁게시판
+- about : 사용자 일반페이지 about
 
   ### write_update.php 사용안할 시 수정해야할 부분
   - _common.php
