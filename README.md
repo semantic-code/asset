@@ -6,6 +6,7 @@
 - history : 어드민용 연혁게시판
 - about : 사용자 일반페이지
 - board.hook.php 게시판 생성시 폴더 이름 제외 함수 예외 처리
+- dashboard.php 메뉴 맨앞으로 나오게 하려면, 상단1차메뉴 직접 추가, admin.head.php .gnb_il 다음에 'dashboard_gnb.php' include
 
   ### write_update.php 사용안할 시 수정해야할 부분
   - _common.php
