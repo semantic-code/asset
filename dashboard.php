@@ -1,5 +1,5 @@
 <?php
-$sub_menu = '350100';
+define('_DASHBOARD_', true);
 include_once('./_common.php');
 
 $g5['title'] = '통합관리';
