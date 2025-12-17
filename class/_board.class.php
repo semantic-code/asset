@@ -11,14 +11,14 @@ class Board {
      *
      * @param string $bo_table   게시판 테이블 명
      * @param array  $where      커스텀 WHERE 조건 (배열)
-     * @param int    $page_rows  한 페이지당 목록 수
+     * @param int|false|null $page_rows 한 페이지당 목록 수, false 면 LIMIT 없음
      *
      * @return array list, total_count, paging
      */
     public static function get (
         string $bo_table,
         array $where = array(),
-        ?int $page_rows = null,
+        int|false|null $page_rows = null,
     ): array
     {
         global $g5;
@@ -32,8 +32,17 @@ class Board {
         $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
         if ($page < 1) $page = 1;
 
-        $page_rows = $page_rows ?? ($board['bo_page_rows'] ?? 15);
-        $offset = ($page - 1) * $page_rows;
+        $limit_sql = '';
+        $use_limit = false;
+
+        if ($page_rows !== false) {
+            // 페이징 사용
+            $use_limit = true;
+            $page_rows = $page_rows ?? ($board['bo_page_rows'] ?? 15);
+            $offset = ($page - 1) * $page_rows;
+
+            $limit_sql = "LIMIT {$offset}, {$page_rows}";
+        }
 
         // --------------------------------------------------
         // 2) WHERE 조건 조립
@@ -77,7 +86,7 @@ class Board {
         // --------------------------------------------------
         // 5) 게시판 목록
         // --------------------------------------------------
-        $sql = "SELECT * FROM {$target_table} {$where_sql} {$order_sql} LIMIT {$offset}, {$page_rows}";
+        $sql = "SELECT * FROM {$target_table} {$where_sql} {$order_sql} {$limit_sql}";
         $result = sql_query($sql);
 
         $list = array();
@@ -87,72 +96,21 @@ class Board {
 
             $list[] = $data;
         }
-        $num = $total_count - $offset;
+        $num = $use_limit ? ($total_count - $offset) : $total_count ;
 
         // --------------------------------------------------
         // 6) return
         // --------------------------------------------------
         $return = array(
-            'list'        => $list,
+            'list'  => $list,
             'total' => $total_count,
-            'num'         => $num,
-            'sql'         => $sql
+            'num'   => $num,
+            'sql'   => $sql
         );
 
         return $return;
     }
-
-    /**
-     * 게시판 글을 전부 가져옴
-     *
-     * @param string $bo_table   게시판 테이블 명
-     * @param array  $where      커스텀 WHERE 조건 (배열)     
-     *
-     * @return array list
-     */
-    public static function all (
-        string $bo_table,
-        array $where = array(),
-        bool $order_by_asc = true,
-    ): array
-    {
-        global $g5;
-
-        $board = get_board_db($bo_table);
-        $target_table = $g5['write_prefix'] . $bo_table;
-
-        // --------------------------------------------------
-        // 1) WHERE 조건 조립
-        // --------------------------------------------------
-        //$where = $where ?? array();
-        $where_sql = $where ? " WHERE " . implode(" AND ", $where) : "";
-
-        // --------------------------------------------------
-        // 2) ORDER BY
-        // --------------------------------------------------
-        $order_sql = $order_by_asc ? "ORDER BY wr_num ASC" : "ORDER BY wr_num DESC";
-
-        // --------------------------------------------------
-        // 3) 데이터 목록
-        // --------------------------------------------------
-        $sql = "SELECT * FROM {$target_table} {$where_sql} {$order_sql}";
-        $result = sql_query($sql);
-
-        $list = array();
-        while ($row = sql_fetch_array($result)) {
-            $data = get_list($row, $board, '', '');
-            $data['file'] = get_file($bo_table, $row['wr_id']);
-
-            $list[] = $data;
-        }
-
-        // --------------------------------------------------
-        // 4) return
-        // --------------------------------------------------
-
-        return $list;
-    }
-
+   
     /**
      * 게시판 상세보기 데이터 반환
      *
@@ -319,3 +277,4 @@ class Board {
         <?php return ob_get_clean();
     }
 }
+
