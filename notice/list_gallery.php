@@ -83,5 +83,29 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
     <div class="paging"><?= $paging ?></div>
 </section>
 
+<div id="imgPopup" class="img-popup">
+    <div class="img-popup-bg"></div>
+    <img id="popupImg" src="">
+</div>
+
+<style>
+    .img-popup {position:fixed;left:0;top:0;width:100%;height:100%;display:none;z-index:9999;}
+    .img-popup-bg {position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.7);}
+    .img-popup img {position:absolute;left:50%;top:50%;max-width:80%;max-height:80%;transform:translate(-50%,-50%);}
+    .gallery-img {cursor:pointer;}
+</style>
+
+<script>
+    $(document).on('click', '.gallery-img', function () {
+        const src = $(this).data('full');
+        $('#popupImg').attr('src', src);
+        $('#imgPopup').fadeIn(200);
+    });
+
+    $(document).on('click', '.img-popup-bg', function () {
+        $('#imgPopup').fadeOut(200);
+    });
+</script>
+
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
