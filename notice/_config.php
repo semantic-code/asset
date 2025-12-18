@@ -10,10 +10,11 @@ $sub_menu = '500100';
 $bo_table = $location ?? 'notice';
 $page_title = '공지사항';
 
-$target_table = $g5['write_prefix'] . $bo_table;
 $board = get_board_db($bo_table);
+if ($board) $target_table = $g5['write_prefix'] . $bo_table;
 
 add_stylesheet('<link rel="stylesheet" href="_style.css">', 0);
 //<link rel="stylesheet" href="/adm/notice/style.css">
+
 
 
