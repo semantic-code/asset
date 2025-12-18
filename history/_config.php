@@ -11,5 +11,8 @@ $bo_table = $location ?? 'history';
 $page_title = '연혁';
 
 $board = get_board_db($bo_table);
-
-if ($board) $target_table = $g5['write_prefix'] . $bo_table;
+if (!empty($board['bo_table'])) {
+    $target_table = $g5['write_prefix'] . $bo_table;
+} else {
+    die('board  값이 없습니다.');
+}
