@@ -1,7 +1,7 @@
 <?php
+$colspan = 7;
 require_once '_config.php';
 
-$colspan = 6;
 $g5['title'] = $page_title;
 require_once G5_ADMIN_PATH . '/admin.head.php';
 
@@ -235,5 +235,6 @@ echo "</pre>";
 <?php
 
 require_once G5_ADMIN_PATH . '/admin.tail.php';
+
 
 
