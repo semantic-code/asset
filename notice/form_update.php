@@ -51,6 +51,10 @@ if ($w === '') {
         'wr_last'       => date("Y-m-d H:i:s"),
     );
 
+    $set+= array(
+        //'wr_use' => $wr_use,
+    );
+
     $sql = "UPDATE {$target_table} SET\n". Query::build_query($set, $board['bo_use_dhtml_editor'] ? 'wr_content' : '') . "\nWHERE wr_id = {$wr_id} ";
     $update = sql_query($sql);
 
@@ -72,6 +76,3 @@ if ($w === '') {
     }
 
 }
-
-
-
