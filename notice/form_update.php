@@ -45,10 +45,10 @@ if ($w === '') {
 } else {
 
     $set = array(
-        'ca_name'       => $ca_name ?? '',
-        'wr_subject'    => $wr_subject,
-        'wr_content'    => $wr_content,
-        'wr_last'       => date("Y-m-d H:i:s"),
+        'ca_name'    => $ca_name ?? '',
+        'wr_subject' => $wr_subject,
+        'wr_content' => $wr_content,
+        'wr_last'    => date("Y-m-d H:i:s"),
     );
 
     $set+= array(
@@ -76,3 +76,4 @@ if ($w === '') {
     }
 
 }
+
