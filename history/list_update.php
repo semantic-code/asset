@@ -2,8 +2,9 @@
 include_once('_config.php');
 
 if ($w === '') {
+    
     $wr_num = get_next_num($target_table);
-
+    
     $set = array(
         "wr_num"      => $wr_num,
         "ca_name"     => $ca_name ?? '',
@@ -27,6 +28,10 @@ if ($w === '') {
     
     if ($insert) goto_url("list.php?sca={$ca_name}&year={$wr_year}&month={$wr_month}");
     
-} else {
+} elseif ($w === 'd'){
     
+    $sql = "DELETE FROM {$g5['write_prefix']}{$bo_table} where wr_id = {$wr_id} ";
+    $delete = sql_query($sql);
+
+    if ($delete) goto_url("list.php?sca={$sca}");
 }
