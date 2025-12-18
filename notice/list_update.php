@@ -1,8 +1,8 @@
 <?php
 include_once('./_config.php');
 
-$allow = array('w', 'wr_id');
-foreach ($allow as $k) if (isset($_GET[$k])) $$k = trim($_GET[$k]);
+//$allow = array('w', 'wr_id');
+//foreach ($allow as $k) if (isset($_GET[$k])) $$k = trim($_GET[$k]);
 
 if ($w === 'd') {
     $sql = "DELETE FROM {$g5['write_prefix']}{$bo_table} WHERE wr_id = {$wr_id} ";
@@ -14,3 +14,4 @@ if ($w === 'd') {
         goto_url("list.php");
     }
 }
+
