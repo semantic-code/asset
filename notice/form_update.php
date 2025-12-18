@@ -33,8 +33,9 @@ if ($w === '') {
         sql_query(" UPDATE {$target_table} SET wr_parent = '{$wr_id}' WHERE wr_id = '{$wr_id}' ");
         sql_query(" UPDATE {$g5['board_table']} SET bo_count_write = bo_count_write + 1 WHERE bo_table = '{$bo_table}' ");
 
-        if (!File::attach_files($files, $bo_table, $wr_id)) alert("파일 저장 실패", "form.php?w=u&wr_id={$wr_id}");
-
+        if ($files) {
+            if (!File::attach_files($files, $bo_table, $wr_id)) alert("파일 저장 실패", "form.php?w=u&wr_id={$wr_id}");
+        }
         goto_url("form.php?w=u&wr_id={$wr_id}");
 
     } else {
@@ -59,16 +60,16 @@ if ($w === '') {
     $update = sql_query($sql);
 
     if ($update) {
-        // 파일삭제
-        foreach ($bf_file_del ?? array() as $bf_no) {
-            File::delete_attach_file($bo_table, $wr_id, $bf_no);
+        if ($files) {
+            // 파일삭제
+            foreach ($bf_file_del ?? array() as $bf_no) {
+                File::delete_attach_file($bo_table, $wr_id, $bf_no);
+            }    
+            // 파일 업로드
+            if (!File::attach_files($files ?? array(), $bo_table, $wr_id)){
+                alert("파일 업로드를 실패했습니다.", "list.php");
+            }            
         }
-
-        // 파일 업로드
-        if (!File::attach_files($files ?? array(), $bo_table, $wr_id)){
-            alert("파일 업로드를 실패했습니다.", "list.php");
-        }
-
         goto_url("form.php?w=u&wr_id={$wr_id}");
 
     } else {
@@ -76,4 +77,5 @@ if ($w === '') {
     }
 
 }
+
 
