@@ -251,8 +251,8 @@ class Html {
         <?php if ($include_style): ?>
         <style>
             .ooc-search{display:flex;flex-direction:column;gap:8px;flex:1; margin-bottom: 1rem;}
-            .ooc-search-row{display:flex;width:70%;align-items:center;gap:8px;}
-            .ooc-search .sel,.ooc-search .inp{flex:3;height:30px;border:1px solid #d1d5db;border-radius:6px;padding:0 10px;background:#fff;}
+            .ooc-search-row{display:flex;width:60%;align-items:center;gap:8px;}
+            .ooc-search .sel,.ooc-search .inp{flex:4;height:30px;border:1px solid #d1d5db;border-radius:6px;padding:0 10px;background:#fff;}
             .ooc-search .inp{min-width:220px;}
             .ooc-search .inp:focus,.ooc-search .sel:focus{border-color:#6366f1;box-shadow:0 0 0 3px rgba(99,102,241,.15);outline:0;}
             .btn{display:inline-flex;align-items:center;justify-content:center;height:30px!important;padding:0 12px;border-radius:6px;line-height:30px!important;text-decoration:none;cursor:pointer;user-select:none;}
@@ -348,3 +348,4 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
