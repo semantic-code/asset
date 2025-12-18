@@ -190,7 +190,7 @@ echo "</pre>";
                         <td><?= $row['wr_month'] ?></td>
                         <td><?= $row['wr_sort'] ?></td>
                         <td><a href="<?= $row['href'] ?>"><?= $row['wr_content'] ?></a></td>
-                        <td><a href="list_delete.php?w=d&wr_id=<?= $row['wr_id'] ?>" class="btn btn_01 btn_delete" onclick="if(!confirm('삭제하시겠습니까?')) return false">삭제</a></td>
+                        <td><a href="list_update.php?w=d&wr_id=<?= $row['wr_id'] ?>" class="btn btn_01 btn_delete" onclick="if(!confirm('삭제하시겠습니까?')) return false">삭제</a></td>
                     </tr>
                     <?php endforeach; endif; ?>
                     </tbody>
@@ -235,4 +235,5 @@ echo "</pre>";
 <?php
 
 require_once G5_ADMIN_PATH . '/admin.tail.php';
+
 
