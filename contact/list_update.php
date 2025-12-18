@@ -1,5 +1,5 @@
 <?php
-include_once('./_config.php');
+include_once('_config.php');
 
 if($mode === 'update_ca_name'){
     $set = array("ca_name" => $ca_name);
@@ -29,5 +29,6 @@ if($mode === 'update_ca_name'){
         $arr_result = array("state" => "fail_delete");
     }
 }
+
 
 die(json_encode($arr_result));
