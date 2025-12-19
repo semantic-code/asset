@@ -86,10 +86,7 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
                     <td><?= date("Y-m-d", strtotime($row['wr_datetime'])) ?></td>
                     <td class="td_mng">
                         <a href="<?= $row['href'] ?>" class="btn btn_03">보기</a>
-                        <a href="list_update.php?w=d&wr_id=<?=$row['wr_id']?>"
-                           class="btn btn_02"
-                           onclick="return confirm('삭제하시겠습니까?')"
-                        >삭제</a>
+                        <a href="list_update.php?w=d&wr_id=<?=$row['wr_id']?>" class="btn btn_02" onclick="return confirm('삭제하시겠습니까?')">삭제</a>
                     </td>
                 </tr>
             <?php endforeach; endif; ?>
@@ -102,4 +99,5 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
