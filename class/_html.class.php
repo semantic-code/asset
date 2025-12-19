@@ -203,20 +203,14 @@ class Html {
      * 게시판 검색영역 HTML 생성
      *
      * @param array  $arr_search '검색 DB 칼럼명' => 검색필드명 ('wr_subject' => '제목')
-     * @param array $keep_key 유지할 get key 배열, input hidden
-     * @param string $sca
-     * @param string $sfl
-     * @param string $stx
+     * @param array $keep_key 유지할 get key 배열, input hidden     
      * @param bool $include_style 스타일 사용여부
      *
      * @return string
      */
     public static function search (
         array $arr_search   = array(),
-        array $keep_key     = array('sca'),
-        string $sca         = '',
-        string $sfl         = '',
-        string $stx         = '',
+        array $keep_key     = array('sca'),       
         bool $include_style = true,
     ): string
     {
@@ -244,6 +238,7 @@ class Html {
             $init_url.= '?' . http_build_query($init_query);
         }
 
+        if (!$sca) $sca = $_GET['sca'] ?? '';
         if (!$sfl) $sfl = $_GET['sfl'] ?? '';
         if (!$stx) $stx = $_GET['stx'] ?? '';
 
@@ -348,5 +343,6 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
 
 
