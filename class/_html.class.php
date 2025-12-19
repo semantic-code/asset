@@ -202,7 +202,7 @@ class Html {
     /**
      * 게시판 검색영역 HTML 생성
      *
-     * @param array  $arr_search '검색 칼럼' => 검색필드명
+     * @param array  $arr_search '검색 DB 칼럼명' => 검색필드명 ('wr_subject' => '제목')
      * @param array $keep_key 유지할 get key 배열, input hidden
      * @param string $sca
      * @param string $sfl
@@ -348,4 +348,5 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
 
