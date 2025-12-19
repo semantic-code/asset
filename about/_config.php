@@ -7,7 +7,12 @@ while (!file_exists($path .'common.php') && realpath($path) !== '/') {$path .= '
 include_once $path .'common.php';
 
 //$sub_menu = '100100';
-$bo_table = $location;
+$bo_table = $location ?? '';
 $board = get_board_db($bo_table);
 
-if ($board) $target_table = $g5['write_prefix'] . $bo_table;
+if (!empty($board['bo_table'])) {
+  $target_table = $g5['write_prefix'] . $bo_table;
+} else {
+  die('bo_table 값이 없습니다.');
+}
+
