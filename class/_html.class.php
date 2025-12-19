@@ -209,11 +209,14 @@ class Html {
      * @return string
      */
     public static function search (
-        array $arr_search   = array(),
-        array $keep_key     = array('sca'),       
-        bool $include_style = true,
+        array $arr_search    = array(),
+        array|bool $keep_key = array('sca'),       
+        bool $include_style  = true,
     ): string
     {
+        // $keep_key가 false이면 빈배열로 변환
+        if ($keep_key === false) $keep_key = array();
+        
         $action = strtok($_SERVER['REQUEST_URI'], '?');
 
         $hidden_input = '';
@@ -343,6 +346,7 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
 
 
 
