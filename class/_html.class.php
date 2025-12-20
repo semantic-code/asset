@@ -290,24 +290,22 @@ class Html {
      * 출력 URL 예:
      *   ?page_code=abc&temp=list&sca=공지
      *
-     * @param array  $arr_cate          카테고리 목록 배열
-     * @param string $base_query_string URL 기본 GET 파라미터 문자열 (key=value&key2=value 형식)
-     * @param string $sca               현재 선택된 카테고리 (없으면 $_GET['sca'] 자동 적용)
-     * @param bool $include_style       style 사용 여부
+     * @param array  $arr_cate               카테고리 목록 배열
+     * @param string|bool $base_query_string URL 기본 GET 파라미터 문자열 (key=value&key2=value 형식)     
+     * @param bool $include_style            style 사용 여부
      *
-     * @return string                   카테고리 탭 HTML 문자열
+     * @return string                        카테고리 탭 HTML 문자열
      */
     public static function category (
-        array  $arr_cate          = array(),
-        string $base_query_string = '',
-        string $sca               = '',
-        bool $include_style       = true,
+        array  $arr_cate               = array(),
+        string|bool $base_query_string = '',        
+        bool $include_style            = true,
     ): string {
 
-        if (empty($arr_cate)) return '';
+        if (empty($arr_cate)) return '';       
 
         // 현재 선택된 카테고리
-        if (!$sca) $sca = $_GET['sca'] ?? '';
+        $sca = $_GET['sca'] ?? '';
 
         // base_query_string 앞의 ? 또는 & 제거
         $base_query_string = ltrim($base_query_string, '?&');
@@ -346,6 +344,7 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
 
 
 
