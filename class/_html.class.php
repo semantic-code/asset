@@ -282,7 +282,7 @@ class Html {
      * - 카테고리 배열($arr_cate)을 기반으로 탭 버튼을 생성한다.
      * - base_query_string 을 통해 page_code 같은 고정 파라미터를 유지할 수 있다.
      * - base_query_string 이 없을 경우 ?sca=값 형태로 출력된다.
-     * - base_query_string 이 있으면 ?key=value&key2=value&sca=값 형태로 출력된다.
+     * - base_query_string 이 있으면 'key=value&key2=value' 형태로 입력한다.
      *
      * 예시:
      *   Html::category(['공지', '이벤트'], "page_code=abc&temp=list", "공지");
@@ -344,6 +344,7 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
 
 
 
