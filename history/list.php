@@ -36,17 +36,6 @@ $paging = Board::paging($result['total'], $page, $bo_page_rows, 5, G5_ADMIN_URL.
 $arr_cate = explode('|', $board['bo_category_list']);
 
 ?>
-<style>
-    /* 표 간격 */
-    .tbl_head01 {margin-top: 10px;}
-    /* 상단 툴바 (카테고리 영역) */
-    .admin-toolbar {display: flex; gap: 12px; padding: 12px 16px; border: 1px solid #e5e7eb; border-radius: 8px; background: #fafafa; margin: 10px 0 15px;}
-    /* 카테고리 탭 */
-    .admin-tabs {display: flex; gap: 6px; list-style: none; padding: 0; margin: 0;}
-    .admin-tabs .tab {display: inline-block; padding: 5px 10px; border: 1px solid #d1d5db; border-radius: 6px; background: #fff; color: #374151; text-decoration: none; font-size: 14px;}
-    .admin-tabs .tab:hover {background: #f3f4f6;}
-    .admin-tabs .tab.is-active {background: #3f51b5; color: #fff; border-color: #1d4ed8;}
-</style>
 
 <section>
     <?php if($bo_use_category): ?>
@@ -120,7 +109,7 @@ $arr_cate = explode('|', $board['bo_category_list']);
         </div>
     </form>
 
-    <div class="tbl_head01">
+    <div class="tbl_head01" style="margin-top: 10px;">
         <h2>연혁 목록</h2>
         <form id="history-form" onsubmit="return false">
             <table>
@@ -202,3 +191,4 @@ $arr_cate = explode('|', $board['bo_category_list']);
 
 <?php
 require_once G5_ADMIN_PATH . '/admin.tail.php';
+
