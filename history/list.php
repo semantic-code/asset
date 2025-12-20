@@ -132,7 +132,7 @@ $arr_cate = explode('|', $board['bo_category_list']);
                     <col style="width:100px;">
                     <col style="width:100px;">
                     <col>
-                    <col style="width:100px;">
+                    <col style="width:150px;">
                 </colgroup>
                 <thead>
                 <tr style="">
@@ -143,7 +143,7 @@ $arr_cate = explode('|', $board['bo_category_list']);
                     <th>월</th>
                     <th>정렬번호</th>
                     <th>내용</th>
-                    <th>삭제</th>
+                    <th>관리</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -159,8 +159,13 @@ $arr_cate = explode('|', $board['bo_category_list']);
                     <td><?= $row['wr_year'] ?></td>
                     <td><?= $row['wr_month'] ?></td>
                     <td><?= $row['wr_sort'] ?></td>
-                    <td><a href="<?= $row['href'] ?>"><?= $row['wr_content'] ?></a></td>
-                    <td><a href="list_update.php?w=d&wr_id=<?= $row['wr_id'] ?>" class="btn btn_01 btn_delete" onclick="if(!confirm('삭제하시겠습니까?')) return false">삭제</a></td>
+                    <td><?= $row['wr_content'] ?></td>
+                    <td>
+                        <div style="display: flex; justify-content: center; gap: .5rem;">
+                            <a href="<?= $row['href'] ?>" class="btn btn_03 btn_delete">보기</a>
+                            <a href="list_update.php?w=d&wr_id=<?= $row['wr_id'] ?>" class="btn btn_02 btn_delete" onclick="if(!confirm('삭제하시겠습니까?')) return false">삭제</a>
+                        </div>
+                    </td>
                 </tr>
                 <?php endforeach; endif; ?>
                 </tbody>
@@ -197,5 +202,3 @@ $arr_cate = explode('|', $board['bo_category_list']);
 
 <?php
 require_once G5_ADMIN_PATH . '/admin.tail.php';
-
-
