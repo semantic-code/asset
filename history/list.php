@@ -113,7 +113,7 @@ $arr_cate = explode('|', $board['bo_category_list']);
                     </td>
                     <td><input type="number" name="wr_sort" value="<?= $next_sort ?>" size="10" class="frm_input"></td>
                     <td><input type="text" name="wr_content" size="" class="frm_input full_input" required value=""></td>
-                    <td><input type="submit" value="등록" class="btn btn_success"></td>
+                    <td><input type="submit" value="등록" class="btn btn_03"></td>
                 </tr>
                 </tbody>
             </table>
@@ -197,3 +197,4 @@ $arr_cate = explode('|', $board['bo_category_list']);
 
 <?php
 require_once G5_ADMIN_PATH . '/admin.tail.php';
+
