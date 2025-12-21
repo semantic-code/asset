@@ -16,3 +16,4 @@ if (!empty($board['bo_table'])) {
   die('bo_table 값이 없습니다.');
 }
 
+//add_stylesheet('<link rel="stylesheet" href="'. G5_URL .'/'.$bo_table.'/_style.css">', 0);
