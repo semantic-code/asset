@@ -11,7 +11,7 @@
 
   ### write_update.php 사용안할 시 수정해야할 부분
   - _common.php
-  - require_once '../common.php'; => require_once __DIR__ . '/common.php';
+  - require_once '../common.php'; => require_once \__\DIR\__\ . '/common.php';
  
   ### write_update.php 사용시
 
