@@ -18,4 +18,5 @@ if (!empty($board['bo_table'])) {
 }
 
 add_stylesheet('<link rel="stylesheet" href="_style.css">', 0);
+//add_stylesheet('<link rel="stylesheet" href="'. G5_URL .'/'.$bo_table.'/_style.css">', 0);
 //<link rel="stylesheet" href="/adm/notice/style.css">
