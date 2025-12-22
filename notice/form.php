@@ -111,7 +111,7 @@ if ($w === 'u') {
                 </td>
             </tr>
             <tr>
-                <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">등록일 </th>
+                <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;"><?= ($w === 'u') ? '수정일' : '등록일' ; ?></th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;"><?= $list['wr_datetime'] ?? date("Y-m-d H:i:s") ?></td>
             </tr>
             </tbody>
@@ -143,6 +143,7 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
