@@ -4,7 +4,7 @@ $g5['title'] = "{$page_title} 보기";
 include_once G5_ADMIN_PATH . '/admin.head.php';
 
 $view = Board::view($bo_table, $wr_id);
-$file_list = $view['file'];
+$files = $view['file'];
 
 ?>
 
@@ -24,9 +24,9 @@ $file_list = $view['file'];
     </div>
 
     <!-- 이미지 미리보기 -->
-    <?php if (!empty($file_list)): ?>
+    <?php if (!empty($files)): ?>
         <div class="view-images">
-            <?php foreach ($file_list as $file): ?>
+            <?php foreach ($files as $file): ?>
             <?php if (!is_array($file)) continue; ?>
             <?php if (empty($file['file'])) continue; ?>
             <?php if (empty($file['image_type'])) continue; ?>
@@ -38,11 +38,11 @@ $file_list = $view['file'];
     <?php endif; ?>
 
     <!-- 첨부파일 -->
-    <?php if (!empty($file_list)): ?>
+    <?php if (!empty($files)): ?>
         <div class="view-files">
             <h3 class="files-title">첨부파일</h3>
             <ul>
-                <?php foreach ($file_list as $file): ?>
+                <?php foreach ($files as $file): ?>
                 <?php if (!is_array($file)) continue; ?>
                     <li>
                         <a href="<?= $file['href'] ?>" target="_blank"><?= $file['source'] ?></a>
@@ -60,9 +60,7 @@ $file_list = $view['file'];
 </div>
 
 <!-- 댓글 -->
-<?php include_once "comment.php"; ?>
+<?php //include_once "comment.php"; ?>
 
 <?php
 include_once G5_ADMIN_PATH . '/admin.tail.php';
-
-
