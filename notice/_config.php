@@ -14,9 +14,10 @@ $board = get_board_db($bo_table);
 if (!empty($board['bo_table'])) {
     $target_table = $g5['write_prefix'] . $bo_table;
 } else {
-    die('board  값이 없습니다.');
+    die('board 값이 없습니다.');
 }
 
 add_stylesheet('<link rel="stylesheet" href="_style.css">', 0);
 //add_stylesheet('<link rel="stylesheet" href="'. G5_URL .'/'.$bo_table.'/_style.css">', 0);
 //<link rel="stylesheet" href="/adm/notice/style.css">
+
