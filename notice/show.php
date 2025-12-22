@@ -6,8 +6,6 @@ include_once G5_ADMIN_PATH . '/admin.head.php';
 $view = Board::view($bo_table, $wr_id);
 $file_list = $view['file'];
 
-var_dump($co_id);
-//print_r2($view);
 ?>
 
 <section class="view-wrap">
@@ -66,4 +64,5 @@ var_dump($co_id);
 
 <?php
 include_once G5_ADMIN_PATH . '/admin.tail.php';
+
 
