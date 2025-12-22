@@ -1,0 +1,17 @@
+/*@charset "utf-8";*/
+/** 게시판 버튼 사용하기 시작 **/
+.btn_primary,a.btn_primary{background:#0d6efd;color:#fff;}.btn_primary:hover,a.btn_primary:hover{background:#0b5ed7;}
+.btn_secondary,a.btn_secondary{background:#6c757d;color:#fff;}.btn_secondary:hover,a.btn_secondary:hover{background:#5c636a;}
+.btn_success,a.btn_success{background:#198754;color:#fff;}.btn_success:hover,a.btn_success:hover{background:#157347;}
+.btn_danger,a.btn_danger{background:#dc3545;color:#fff;}.btn_danger:hover,a.btn_danger:hover{background:#bb2d3b;}
+.btn_warning,a.btn_warning{background:#ffc107;color:#212529;}.btn_warning:hover,a.btn_warning:hover{background:#ffca2c;}
+.btn_info,a.btn_info{background:#0dcaf0;color:#212529;}.btn_info:hover,a.btn_info:hover{background:#31d2f2;}
+.btn_dark,a.btn_dark{background:#343a40;color:#fff;}.btn_dark:hover,a.btn_dark:hover{background:#23272b;}
+
+.btn_outline_primary,a.btn_outline_primary{background:transparent;color:#0d6efd;border:1px solid #0d6efd;}.btn_outline_primary:hover,a.btn_outline_primary:hover{background:#0d6efd;color:#fff;}
+.btn_outline_secondary,a.btn_outline_secondary{background:transparent;color:#6c757d;border:1px solid #6c757d;}.btn_outline_secondary:hover,a.btn_outline_secondary:hover{background:#6c757d;color:#fff;}
+.btn_outline_success,a.btn_outline_success{background:transparent;color:#198754;border:1px solid #198754;}.btn_outline_success:hover,a.btn_outline_success:hover{background:#198754;color:#fff;}
+.btn_outline_danger,a.btn_outline_danger{background:transparent;color:#dc3545;border:1px solid #dc3545;}.btn_outline_danger:hover,a.btn_outline_danger:hover{background:#dc3545;color:#fff;}
+.btn_outline_warning,a.btn_outline_warning{background:transparent;color:#ffc107;border:1px solid #ffc107;}.btn_outline_warning:hover,a.btn_outline_warning:hover{background:#ffc107;color:#212529;}
+.btn_outline_info,a.btn_outline_info{background:transparent;color:#0dcaf0;border:1px solid #0dcaf0;}.btn_outline_info:hover,a.btn_outline_info:hover{background:#0dcaf0;color:#212529;}
+.btn_outline_dark,a.btn_outline_dark{background:transparent;color:#343a40;border:1px solid #343a40;}.btn_outline_dark:hover,a.btn_outline_dark:hover{background:#343a40;color:#fff;}
