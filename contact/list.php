@@ -86,7 +86,7 @@ $paging = Board::paging($result['total'], $page, $page_rows, 5, "list.php?sca={$
                     <td>
                         <div style="display: flex;">
                             <input type="text" name="wr_memo" value="<?= $row['wr_memo'] ?>" style="width: 90%; margin-right: .5rem;">
-                            <button type="button" class="btn btn_03 btn_memo_update" data-wr-id="<?= $row['wr_id'] ?>" style="width: 90px;">메모저장</button>
+                            <button type="button" class="btn btn_03 btn_memo_update" data-wr-id="<?= $row['wr_id'] ?>" style="width: 50px;">저장</button>
                         </div>
                     </td>
                     <td>
@@ -147,4 +147,5 @@ $paging = Board::paging($result['total'], $page, $page_rows, 5, "list.php?sca={$
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
