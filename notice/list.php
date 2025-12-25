@@ -7,7 +7,7 @@ $bo_upload_count = $board['bo_upload_count'];
 $bo_use_category = $board['bo_use_category'];
 $bo_use_search = true;
 
-$g5['title'] = $page_title;
+$g5['title'] = $page_title . ' 목록';
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
 $result = Board::get($bo_table, array('wr_is_comment = 0'), $board['bo_page_rows']);
@@ -99,5 +99,3 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
-
-
