@@ -7,7 +7,7 @@ include_once('./_config.php');
 include_once(G5_CAPTCHA_PATH . '/captcha.lib.php');
 
 // use_dhtml_editor
-//$use_dhtml_editor = $board['bo_use_dhtml_editor'];
+$bo_use_dhtml_editor = $board['bo_use_dhtml_editor'];
 
 // bo_use_category
 $bo_use_category = $board['bo_use_category'];
@@ -73,7 +73,7 @@ if ($w === 'u') {
                 <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">내용</th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
                     <div class="wr_content <?= $board['bo_select_editor'] ?>">
-                        <?= editor_html('wr_content', $list['wr_content'] ?? '', $use_dhtml_editor) ?>
+                        <?= editor_html('wr_content', $list['wr_content'] ?? '', $bo_use_dhtml_editor) ?>
                     </div>
                 </td>
             </tr>
@@ -143,6 +143,7 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
