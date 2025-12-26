@@ -3,7 +3,7 @@
 include_once('./_config.php');
 
 // editor, captcha
-//include_once (G5_EDITOR_LIB);
+include_once (G5_EDITOR_LIB);
 include_once(G5_CAPTCHA_PATH . '/captcha.lib.php');
 
 // use_dhtml_editor
@@ -143,6 +143,7 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
