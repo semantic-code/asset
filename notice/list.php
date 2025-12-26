@@ -1,6 +1,6 @@
 <?php
 $colspan = 8;
-include_once('./_config.php');
+include_once('_config.php');
 
 // board
 $bo_upload_count = $board['bo_upload_count'];
@@ -99,3 +99,4 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
