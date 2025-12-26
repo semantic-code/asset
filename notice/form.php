@@ -1,6 +1,9 @@
 <?php
 //auth_check_menu($auth, $sub_menu, 'r');
 include_once('./_config.php');
+$page_title.= $w === 'u' ? ' 수정 ' : ' 입력';
+$g5['title'] = $page_title;
+include_once (G5_ADMIN_PATH.'/admin.head.php');
 
 // editor, captcha
 include_once (G5_EDITOR_LIB);
@@ -14,10 +17,6 @@ $bo_use_category = $board['bo_use_category'];
 $bo_category_list = $board['bo_category_list'];
 // bo_upload_count
 $bo_upload_count = $board['bo_upload_count'];
-
-$page_title.= $w === 'u' ? ' 수정 ' : ' 입력';
-$g5['title'] = $page_title;
-include_once (G5_ADMIN_PATH.'/admin.head.php');
 
 $list = array();
 $files = array();
@@ -143,6 +142,7 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
