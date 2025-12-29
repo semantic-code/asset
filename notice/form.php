@@ -157,15 +157,3 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
-
-
-
-
-
-
-
-
-
-
-
-
