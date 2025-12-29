@@ -60,11 +60,11 @@ if ($w === '') {
     $update = sql_query($sql);
 
     if ($update) {
-        if ($files) {
-            // 파일삭제
-            foreach ($bf_file_del ?? array() as $bf_no) {
-                File::delete_attach_file($bo_table, $wr_id, $bf_no);
-            }    
+        // 파일삭제
+        foreach ($bf_file_del ?? array() as $bf_no) {
+            File::delete_attach_file($bo_table, $wr_id, $bf_no);
+        }    
+        if ($files) {            
             // 파일 업로드
             if (!File::attach_files($files ?? array(), $bo_table, $wr_id)){
                 alert("파일 업로드를 실패했습니다.", "list.php");
@@ -77,5 +77,3 @@ if ($w === '') {
     }
 
 }
-
-
