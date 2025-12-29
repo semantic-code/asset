@@ -23,7 +23,7 @@ class File {
     ): bool {
         global $g5;
 
-        if (empty($wr_id)) return false;
+        if (!$wr_id || empty($files['name'])) return true;
 
         $upload_dir = $upload_dir ?: G5_DATA_PATH . "/file/{$bo_table}";
         if (!is_dir($upload_dir)) {
@@ -31,17 +31,10 @@ class File {
             @chmod($upload_dir, G5_DIR_PERMISSION);
         }
 
-        if (empty($files) || empty($files['name'][0])) return true;
+        foreach ($files['name'] as $bf_no => $original_name) {
+            if (!$original_name) continue;
+            if ($files['error'][$bf_no] !== UPLOAD_ERR_OK) continue;
 
-        $sql = "SELECT MAX(bf_no) AS max_bf_no FROM {$g5['board_file_table']}
-                WHERE bo_table='{$bo_table}' AND wr_id='{$wr_id}'";
-        $row = sql_fetch($sql);
-        $bf_no = is_null($row['max_bf_no']) ? 0 : (int)$row['max_bf_no'] + 1;
-
-        for ($i = 0; $i < count($files['name']); $i++) {
-            if ($files['error'][$i] !== UPLOAD_ERR_OK || !$files['name'][$i]) continue;
-
-            $original_name = $files['name'][$i];
             $ext = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
             $deny_ext = array('php', 'phar', 'exe', 'sh', 'js');
             if (in_array($ext, $deny_ext)) continue;
@@ -49,32 +42,49 @@ class File {
             $new_name = date('YmdHis') . '_' . md5(uniqid('', true)) . '.' . $ext;
             $dest_path = "{$upload_dir}/{$new_name}";
 
-            if (!move_uploaded_file($files['tmp_name'][$i], $dest_path)) return false;
+            if (!move_uploaded_file($files['tmp_name'][$bf_no], $dest_path)) return false;
             @chmod($dest_path, G5_FILE_PERMISSION);
 
             $info = @getimagesize($dest_path);
             $width = $info[0] ?? 0;
             $height = $info[1] ?? 0;
-
-            // 이미지 여부
             $bf_type = ($width > 0) ? 1 : 0;
 
-            $sql = "
-                INSERT INTO {$g5['board_file_table']} SET 
-                bo_table='{$bo_table}', 
-                wr_id='{$wr_id}', 
-                bf_no='{$bf_no}', 
-                bf_source='" . addslashes($original_name) . "', 
-                bf_file='{$new_name}', 
-                bf_filesize='{$files['size'][$i]}', 
-                bf_width='{$width}', 
-                bf_height='{$height}', 
-                bf_type='{$bf_type}', 
-                bf_datetime=NOW(); ";
-            sql_query($sql);
-            $bf_no++;
-        }
+            // bf_no 존재 여부 확인
+            $row = sql_fetch("SELECT bf_no FROM {$g5['board_file_table']} WHERE bo_table = '{$bo_table}' AND wr_id = '{$wr_id}' AND bf_no = '{$bf_no}' ");
 
+            if ($row) {
+                $sql = "
+                UPDATE {$g5['board_file_table']} SET
+                    bf_source   = '".addslashes($original_name)."',
+                    bf_file     = '{$new_name}',
+                    bf_filesize = '{$files['size'][$bf_no]}',
+                    bf_width    = '{$width}',
+                    bf_height   = '{$height}',
+                    bf_type     = '{$bf_type}',
+                    bf_datetime = NOW()
+                WHERE bo_table='{$bo_table}'
+                  AND wr_id='{$wr_id}'
+                  AND bf_no='{$bf_no}'
+                ";
+                sql_query($sql);
+
+            } else {
+                $sql = "
+                INSERT INTO {$g5['board_file_table']} SET 
+                    bo_table='{$bo_table}', 
+                    wr_id='{$wr_id}', 
+                    bf_no='{$bf_no}', 
+                    bf_source='" . addslashes($original_name) . "', 
+                    bf_file='{$new_name}', 
+                    bf_filesize='{$files['size'][$i]}', 
+                    bf_width='{$width}', 
+                    bf_height='{$height}', 
+                    bf_type='{$bf_type}', 
+                    bf_datetime=NOW(); ";
+                sql_query($sql);
+            }
+        }
         return true;
     }
 
@@ -110,6 +120,7 @@ class File {
         return true;
     }
 }
+
 
 
 
