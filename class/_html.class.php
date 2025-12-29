@@ -35,32 +35,22 @@ class Html {
 
         <div class="file-upload-box">
             <ul class="file-list">
-                <!-- 기존 파일 목록 -->
-                <?php $used_count = 0; ?>
-                <?php foreach ($files as $i => $file): ?>
-                    <?php if (!is_array($file)) continue;  ?>
-                    <?php if (empty($file['file'])) continue; ?>
-                    <?php $href = "{$file['path']}/{$file['file']}"; ?>
-                    <?php $file_source = htmlspecialchars($file['source']); ?>
-                    <?php $used_count++; ?>
-                    <li class="file-uploaded">
-                        <span class="file-name">
-                            <a href="<?= $href ?>" download="<?= $file_source ?>"><?= $file_source ?></a>
-                        </span>
-                        <label class="file-delete">
-                            <input type="checkbox" name="bf_file_del[]" value="<?= $i ?>"> 삭제
-                        </label>
-                    </li>
-                <?php endforeach; ?>
-                <!-- 신규 파일 업로드 -->
-                <?php if ($upload_count !== null): ?>
-                    <?php $remain = max(0, $upload_count - $used_count); ?>
-                    <?php for ($i = 0; $i < $remain; $i++): ?>
-                        <li  class="file-input-row">
-                            <input type="file" name="bf_file[]" <?= $accept ?? '' ?>>
+                <?php for ($i = 0; $i < $upload_count; $i++): ?>
+                    <?php if (!empty($files[$i]['file'])): ?>
+                        <li class="file-uploaded">
+                            <span class="file-name">
+                                <?php $href = "{$files[$i]['path']}/{$files[$i]['file']}"; ?>
+                                <?php $file_source = htmlspecialchars($files[$i]['source']); ?>
+                                <a href="<?= $href ?>" download="<?= $file_source ?>"><?= $file_source ?></a>
+                            </span>
+                            <label class="file-delete">
+                                <input type="checkbox" name="bf_file_del[<?= $i ?>]" value="<?= $i ?>"> 삭제
+                            </label>
                         </li>
-                    <?php endfor; ?>
-                <?php endif; ?>
+                    <?php else: ?>
+                        <li class="file-input-row"><input type="file" name="bf_file[<?= $i ?>]" <?= $accept ? "accept='{$accept}'" : '' ?>></li>
+                    <?php endif; ?>
+                <?php endfor; ?>
             </ul>
         </div>
         <?php return ob_get_clean();
@@ -354,3 +344,4 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
