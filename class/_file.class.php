@@ -145,7 +145,7 @@ class File {
         $img_ext = array('jpg', 'jpeg', 'png', 'gif', 'webp', 'bmp');
     
         foreach ($rows as $row) {
-            $no = $row['bf_no'];
+            $bf_no = $row['bf_no'];
             $file = $row['bf_file'];
             $src = $row['bf_source'];
             $ext = strtolower(pathinfo($src, PATHINFO_EXTENSION));
@@ -154,8 +154,8 @@ class File {
             // 이미지 여부 판단
             $is_image = in_array($ext, $img_ext);
     
-            $files[$no] = array(
-                "no"       => $no,
+            $files[] = array(
+                "bf_no"    => $bf_no,
                 "file"     => $file,
                 "source"   => $src,
                 "path"     => $path,
@@ -171,9 +171,3 @@ class File {
         return $files;
     }
 }
-
-
-
-
-
-
