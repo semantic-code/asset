@@ -21,50 +21,51 @@ class Html {
         string $accept = null,
         string $title = '파일첨부'
     ): string {
+    
         ob_start(); ?>
+    
         <style>
-            .file-upload-box{border:1px solid #ccc;padding:10px;border-radius:6px;}
-            .file-upload-box .file-list{list-style:none;margin:0;padding:0;}
-            .file-upload-box .file-list li{display:flex;justify-content:space-between;align-items:center;padding:8px 10px;margin-bottom:6px;border:1px solid #c9c9c9;border-radius:4px;height:48px;box-sizing:border-box;}
-            .file-upload-box .file-list li.file-uploaded{background:#D3E3FD;}
-            .file-upload-box .file-list li.file-uploaded .file-name a{color:#000;font-weight:bold;text-decoration:none;}
-            .file-upload-box .file-list li.file-input-row{background:#fff;}
-            .file-upload-box .file-list li.file-input-row input[type="file"]{height:100%;width:100%; box-sizing:border-box;}
-            .file-upload-box .file-delete{margin-left:10px;white-space:nowrap;}
+            .file-upload-box { border:1px solid #ccc; padding:10px; border-radius:6px; }
+            .file-upload-box .file-list { list-style:none; margin:0; padding:0; }
+            .file-upload-box .file-list li { display:flex; justify-content:space-between; align-items:center; padding:8px 10px; margin-bottom:6px; border:1px solid #c9c9c9; border-radius:4px; height:48px; box-sizing:border-box; }
+            .file-upload-box .file-list li.file-uploaded { background:#D3E3FD; }
+            .file-upload-box .file-list li.file-uploaded .file-name a { color:#000; font-weight:bold; text-decoration:none; }
+            .file-upload-box .file-list li.file-input-row { background:#fff; }
+            .file-upload-box .file-list li.file-input-row input[type="file"] { height:100%; width:100%; box-sizing:border-box; }
+            .file-upload-box .file-delete { margin-left:10px; white-space:nowrap; }
         </style>
-
+    
         <div class="file-upload-box">
             <ul class="file-list">
-                <!-- 기존 파일 목록 -->
-                <?php $used_count = 0; ?>
-                <?php foreach ($files as $i => $file): ?>
-                    <?php if (!is_array($file)) continue;  ?>
-                    <?php if (empty($file['file'])) continue; ?>
-                    <?php $href = "{$file['path']}/{$file['file']}"; ?>
-                    <?php $file_source = htmlspecialchars($file['source']); ?>
-                    <?php $used_count++; ?>
-                    <li class="file-uploaded">
-                        <span class="file-name">
-                            <a href="<?= $href ?>" download="<?= $file_source ?>"><?= $file_source ?></a>
-                        </span>
-                        <label class="file-delete">
-                            <input type="checkbox" name="bf_file_del[]" value="<?= $i ?>"> 삭제
-                        </label>
-                    </li>
-                <?php endforeach; ?>
-                <!-- 신규 파일 업로드 -->
-                <?php if ($upload_count !== null): ?>
-                <?php $remain = max(0, $upload_count - $used_count); ?>
-                <?php for ($i = 0; $i < $remain; $i++): ?>
-                    <li  class="file-input-row">
-                        <input type="file" name="bf_file[]" <?= $accept ?? '' ?>>
-                    </li>
+                <?php for ($i = 0; $i < $upload_count; $i++): ?>
+    
+                    <?php if (!empty($file[$i]['file'])): ?>
+                        <li class="file-uploaded">
+                            <span class="file-name">
+                                <?php
+                                $href = "{$file[$i]['path']}/{$file[$i]['file']}";
+                                $file_source = htmlspecialchars($file[$i]['source']);
+                                ?>
+                                <a href="<?= $href ?>" download="<?= $file_source ?>"><?= $file_source ?></a>
+                            </span>
+                            <label class="file-delete">
+                                <input type="checkbox" name="bf_file_del[]" value="<?= $i ?>"> 삭제
+                            </label>
+                        </li>
+                    <?php else: ?>
+                        <li class="file-input-row">
+                            <input type="file" name="bf_file[]" <?= $accept ? "accept='{$accept}'" : '' ?>>
+                        </li>
+                    <?php endif; ?>
+    
                 <?php endfor; ?>
-                <?php endif; ?>
             </ul>
         </div>
-        <?php return ob_get_clean();
+    
+        <?php
+        return ob_get_clean();
     }
+
 
     /**
      * 파일 업로드 입력창 HTML 생성
@@ -354,4 +355,5 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
 
