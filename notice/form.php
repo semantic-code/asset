@@ -23,6 +23,19 @@ $files = array();
 if ($w === 'u') {
     $list = Board::view($bo_table, $wr_id);
     $files = $list['file'];
+
+    $files_kept = array();
+    foreach ($files as $bf_no => $file) {
+        if (!is_array($file)) continue;
+        if (empty($file['file'])) continue;
+
+        $files_kept[$bf_no] = $file;
+    }
+
+    $keys = array_keys($files_kept);
+
+    $first_file = isset($keys[0]) ? [ $keys[0] => $files_kept[$keys[0]] ] : array();
+    $second_file = isset($keys[1]) ? [ $keys[1] => $files_kept[$keys[1]] ] : array();
 }
     
 ?>
@@ -76,13 +89,20 @@ if ($w === 'u') {
                     </div>
                 </td>
             </tr>
-                
+            <!-- 1번째 파일 -->
             <tr>
                 <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">이미지 업로드</th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
-                    <?= Html::file_upload_list_html($files, $bo_upload_count, "image/*") ?>
+                    <?= Html::file_upload_list_html($first_file, 1, "image/*") ?>
                 </td>
             </tr>
+            <!-- 2번째 파일 -->
+            <tr>
+                <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">이미지 업로드</th>
+                <td style="padding:10px; border-bottom:1px solid #ddd;">
+                    <?= Html::file_upload_list_html($second_file, 1, "image/*") ?>
+                </td>
+            </tr>                
             <tr>
                 <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">파일 미리보기</th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
@@ -147,6 +167,7 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
