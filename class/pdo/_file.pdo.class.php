@@ -38,10 +38,9 @@ class File {
         $row = $DB->row($sql,  array('bo_table' => $bo_table, 'idx' => $idx));
         $bf_no = is_null($row['max_bf_no']) ? 0 : (int)$row['max_bf_no'] + 1;
 
-        for ($i = 0; $i < count($files['name']); $i++) {
-            if ($files['error'][$i] !== UPLOAD_ERR_OK || !$files['name'][$i]) continue;
+        foreach ($files['name'] as $bf_no => $original_name) {
+            if ($files['error'][$bf_no] !== UPLOAD_ERR_OK || !$files['name'][$bf_no]) continue;
 
-            $original_name = $files['name'][$i];
             $ext = strtolower(pathinfo($original_name, PATHINFO_EXTENSION));
             $deny_ext = array('php', 'phar', 'exe', 'sh', 'js');
             if (in_array($ext, $deny_ext)) continue;
@@ -49,31 +48,45 @@ class File {
             $new_name = date('YmdHis') . '_' . md5(uniqid('', true)) . '.' . $ext;
             $dest_path = "{$upload_dir}/{$new_name}";
 
-            if (!move_uploaded_file($files['tmp_name'][$i], $dest_path)) return false;
+            if (!move_uploaded_file($files['tmp_name'][$bf_no], $dest_path)) return false;
             @chmod($dest_path, 0770);
 
             $info = @getimagesize($dest_path);
             $width = $info[0] ?? 0;
             $height = $info[1] ?? 0;
-
             // 이미지 여부
             $bf_type = ($width > 0) ? 1 : 0;
 
-            $insert_data = array(
-                'bo_table'   => $bo_table,
-                'idx'        => $idx,
-                'bf_no'      => $bf_no,
-                'bf_source'  => $original_name,
-                'bf_file'    => $new_name,
-                'bf_filesize'=> $files['size'][$i],
-                'bf_width'   => $width,
-                'bf_height'  => $height,
-                'bf_type'    => $bf_type, 
-                'bf_datetime'=> date('Y-m-d H:i:s'),
-            );
+            // bf_no 존재 여부 확인
+            $row = $DB->row("SELECT bf_no FROM {$tb['attach_files']} WHERE bo_table = '{$bo_table}' AND idx = '{$idx}' AND bf_no = '{$bf_no}' ");            
 
-            $DB->insert($tb['attach_files'], $insert_data);
-            $bf_no++;
+            if ($row) {
+                $update_data = array(                    
+                    'bf_source'   => addslashes($original_name),
+                    'bf_file'     => $new_name,
+                    'bf_filesize' => $files['size'][$bf_no],
+                    'bf_width'    => $width,
+                    'bf_height'   => $height,
+                    'bf_type'     => $bf_type,
+                    'bf_datetime' => 'NOW()',
+                );
+                $DB->update($tb['attach_files'], $update_data, array('bo_table' => $bo_table, 'idx' => $idx, 'bf_no' => $bf_no));
+                
+            } else {
+                $insert_data = array(
+                    'bo_table'   => $bo_table,
+                    'idx'        => $idx,
+                    'bf_no'      => $bf_no,
+                    'bf_source'  => $original_name,
+                    'bf_file'    => $new_name,
+                    'bf_filesize'=> $files['size'][$i],
+                    'bf_width'   => $width,
+                    'bf_height'  => $height,
+                    'bf_type'    => $bf_type, 
+                    'bf_datetime'=> date('Y-m-d H:i:s'),
+                );
+                $DB->insert($tb['attach_files'], $insert_data);
+            }
         }
 
         return true;
