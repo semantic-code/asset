@@ -83,23 +83,28 @@ if ($w === 'u') {
                     <?= Html::file_upload_list_html($files, $bo_upload_count, "image/*") ?>
                 </td>
             </tr>
-            <?php if ($files[0]['image_type']): ?>
             <tr>
-                <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">등록된 이미지</th>
+                <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">파일 미리보기</th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
                     <div class="view-images">
                         <?php foreach ($files as $file): ?>
                             <?php if (!is_array($file)) continue; ?>
                             <?php if (empty($file['file'])) continue; ?>
-                            <?php if (empty($file['image_type'])) continue; ?>
+                            <?php if ($file['image_type']): ?>
+                            <!-- 이미지 미리보기 -->
                             <div class="view-img-box">
                                 <img src="<?= $file['path'] . '/' . $file['file'] ?>" alt="<?= $file['source'] ?>">
                             </div>
+                            <?php else: ?>
+                            <!-- 일반 파일 -->
+                            <div class="view-file-box">                                
+                                <?= htmlspecialchars($file['source'] ?? $file['file'], ENT_QUOTES) ?>                                
+                            </div>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
                 </td>
             </tr>
-            <?php endif; ?>
             <tr>
                 <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">
                     사용 여부
@@ -142,6 +147,7 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
