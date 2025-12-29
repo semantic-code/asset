@@ -9,14 +9,14 @@ class Html {
     /**
      * 파일 리스트 + 첨부 HTML 생성 (패딩형, 미리보기 구조)
      *
-     * @param array    $file         그누보드 파일정보 배열 ($file)
+     * @param array    $files        그누보드 파일정보 배열 ($file)
      * @param int|null $upload_count 업로드 허용 개수 (기본값 2)
      * @param string   $accept       input file accept
      * @param string   $title        제목 텍스트 (기본: "파일첨부")
      * @return string  HTML 문자열
      */
     public static function file_upload_list_html(
-        array $file = array(),
+        array $files = array(),
         ?int $upload_count = null,
         string $accept = null,
         string $title = '파일첨부'
@@ -37,7 +37,7 @@ class Html {
             <ul class="file-list">
                 <!-- 기존 파일 목록 -->
                 <?php $used_count = 0; ?>
-                <?php foreach ($files as $file): ?>
+                <?php foreach ($files as $i => $file): ?>
                     <?php if (!is_array($file)) continue;  ?>
                     <?php if (empty($file['file'])) continue; ?>
                     <?php $href = "{$file['path']}/{$file['file']}"; ?>
@@ -48,7 +48,7 @@ class Html {
                             <a href="<?= $href ?>" download="<?= $file_source ?>"><?= $file_source ?></a>
                         </span>
                         <label class="file-delete">
-                            <input type="checkbox" name="bf_file_del[]" value="<?= $file['bf_no'] ?>"> 삭제
+                            <input type="checkbox" name="bf_file_del[]" value="<?= $i ?>"> 삭제
                         </label>
                     </li>
                 <?php endforeach; ?>
@@ -354,3 +354,4 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
