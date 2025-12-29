@@ -26,8 +26,9 @@ textarea{resize:vertical;}
    이미지 미리보기 / 업로드 박스
 ================================ */
 .view-images{display:flex;gap:10px;/*margin-bottom:25px;*/flex-wrap:wrap;}
-.view-img-box{border:1px solid #ddd;padding:5px;border-radius:4px;background:#fafafa;}
-.view-images img{display:block;max-width:150px;height:auto;border-radius:3px;}
+.view-img-box{max-width:180px;border:1px solid #ddd;padding:5px;border-radius:4px;background:#fafafa;}
+.view-images img{display:block;width:100%;height:auto;border-radius:3px;}
+.view-file-box{max-width:180px;border:1px solid #ddd;padding:5px;border-radius:4px;background:#fafafa;}
 
 /* ================================
    댓글(comment)
