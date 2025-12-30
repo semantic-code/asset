@@ -72,16 +72,16 @@ class File {
             } else {
                 $sql = "
                 INSERT INTO {$g5['board_file_table']} SET 
-                    bo_table='{$bo_table}', 
-                    wr_id='{$wr_id}', 
-                    bf_no='{$bf_no}', 
-                    bf_source='" . addslashes($original_name) . "', 
-                    bf_file='{$new_name}', 
-                    bf_filesize='{$files['size'][$bf_no]}', 
-                    bf_width='{$width}', 
-                    bf_height='{$height}', 
-                    bf_type='{$bf_type}', 
-                    bf_datetime=NOW(); ";
+                    bo_table = '{$bo_table}', 
+                    wr_id = '{$wr_id}', 
+                    bf_no = '{$bf_no}', 
+                    bf_source = '" . addslashes($original_name) . "', 
+                    bf_file = '{$new_name}', 
+                    bf_filesize = '{$files['size'][$bf_no]}', 
+                    bf_width = '{$width}', 
+                    bf_height = '{$height}', 
+                    bf_type = '{$bf_type}', 
+                    bf_datetime = NOW(); ";
                 sql_query($sql);
             }
         }
@@ -145,3 +145,4 @@ class File {
         return true;
     }
 }
+
