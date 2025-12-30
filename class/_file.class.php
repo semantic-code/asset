@@ -77,7 +77,7 @@ class File {
                     bf_no='{$bf_no}', 
                     bf_source='" . addslashes($original_name) . "', 
                     bf_file='{$new_name}', 
-                    bf_filesize='{$files['size'][$i]}', 
+                    bf_filesize='{$files['size'][$bf_no]}', 
                     bf_width='{$width}', 
                     bf_height='{$height}', 
                     bf_type='{$bf_type}', 
@@ -85,6 +85,7 @@ class File {
                 sql_query($sql);
             }
         }
+
         return true;
     }
 
@@ -116,12 +117,31 @@ class File {
             if (is_file($path)) @unlink($path);
         }
 
-        sql_query("DELETE FROM {$g5['board_file_table']} WHERE bo_table='{$bo_table}' AND wr_id='{$wr_id}' {$bf_sql}");
+        // 파일 삭제
+        /*sql_query("DELETE FROM {$g5['board_file_table']} WHERE bo_table='{$bo_table}' AND wr_id='{$wr_id}' {$bf_sql}");*/
+
+        // 파일 업로드
+        $delete_sql = "
+            UPDATE {$g5['board_file_table']}
+            SET
+                bf_source    = '',
+                bf_file      = '',
+                bf_download  = 0,
+                bf_content   = '',
+                bf_fileurl   = '',
+                bf_thumburl  = '',
+                bf_storage   = '',
+                bf_filesize  = 0,
+                bf_width     = 0,
+                bf_height    = 0,
+                bf_type      = 0,
+                bf_datetime  = '".G5_TIME_YMDHIS."'
+            WHERE bo_table = '{$bo_table}'
+              AND wr_id    = '{$wr_id}'
+              {$bf_sql}
+        ";
+        sql_query($delete_sql);
+
         return true;
     }
 }
-
-
-
-
-
