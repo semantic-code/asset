@@ -10,27 +10,39 @@ class Query {
      * 배열 데이터를 SQL SET 구문 형태로 변환
      *
      * @param array  $data           입력 데이터 (key => value 형태)
-     * @param string $editor_fields  에디터 전용 필드 (addslashes 대신 stripslashes 저장)
+     * @param array  $editor_fields  에디터 전용 필드 (addslashes 대신 stripslashes 저장)
+     *
      * @return string SQL SET 구문 문자열
      *
      * @example
      * $sql = "INSERT INTO {$table} SET\n" . $Query->build_query($set, 'wr_content');
      */
-    public static function build_query(array $data, string $editor_fields = ''): string {
+    public static function build_query(
+        array $data, 
+        array $editor_fields = array()
+    ): string {
         $set = array();
 
         foreach ($data as $key => $value) {
+            // null
             if (is_null($value)) {
                 $set[] = "{$key} = NULL";
-            } elseif (is_numeric($value) && !preg_match('/^0[0-9]+$/', $value)) {
-                $set[] = "{$key} = {$value}";
-            } elseif ($key === $editor_fields) {
-                $clean_value = stripslashes($value);
-                $set[] = "{$key} = '{$clean_value}'";
-            } else {
-                $escaped_value = addslashes($value);
-                $set[] = "{$key} = '{$escaped_value}'";
+                continue;
             }
+            // 숫자 (선행 0 제외)
+            if (is_numeric($value) && !preg_match('/^0[0-9]+$/', $value)) {
+                $set[] = "{$key} = {$value}";
+                continue;
+            }
+            // 에디터 필도 (HTML 그대로 저장)
+            if (in_array($key, $editor_fields, true)) {
+                $clean_value = stripslashes($value);
+                $set[] = "{$key} = '{$clean_value}'";                        
+                continue;
+            }
+            // 일반 문자열
+            $escaped_value = addslashes($value);
+            $set[] = "{$key} = '{$escaped_value}'";            
         }
         return implode(",\n", $set);
     }
@@ -70,4 +82,5 @@ class Query {
         return array_fill_keys($fields, '');
     }
 }
+
 
