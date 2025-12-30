@@ -25,7 +25,7 @@ if ($w === '') {
 
     $set += Query::get_empty_fields($target_table);
 
-    $sql = "INSERT INTO {$target_table} SET\n". Query::build_query($set, $board['bo_use_dhtml_editor'] ? 'wr_content' : '');
+    $sql = "INSERT INTO {$target_table} SET\n". Query::build_query($set, $board['bo_use_dhtml_editor'] ? array('wr_content') : array());
     $insert = sql_query($sql);
 
     if ($insert) {
@@ -56,7 +56,7 @@ if ($w === '') {
         //'wr_use' => $wr_use,
     );
 
-    $sql = "UPDATE {$target_table} SET\n". Query::build_query($set, $board['bo_use_dhtml_editor'] ? 'wr_content' : '') . "\nWHERE wr_id = {$wr_id} ";
+    $sql = "UPDATE {$target_table} SET\n". Query::build_query($set, $board['bo_use_dhtml_editor'] ? array('wr_content') : array()) . "\nWHERE wr_id = {$wr_id} ";
     $update = sql_query($sql);
 
     if ($update) {
@@ -75,4 +75,5 @@ if ($w === '') {
     }
 
 }
+
 
