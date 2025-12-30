@@ -147,8 +147,8 @@ if ($w === 'u') {
 <script>
     function fwrite_submit(f){
          //editor
-        <?php //echo get_editor_js('wr_content', $use_dhtml_editor);?>
-        <?php //echo chk_editor_js('wr_content', $use_dhtml_editor);?>
+        <?php //echo get_editor_js('wr_content', $bo_use_dhtml_editor);?>
+        <?php //echo chk_editor_js('wr_content', $bo_use_dhtml_editor);?>
 
         //captcha
         <?php echo chk_captcha_js() ;?>
@@ -157,3 +157,4 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
