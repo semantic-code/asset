@@ -9,6 +9,7 @@ include_once $path.'_common.php';
 $sub_menu = '500300';
 $bo_table = $location ?? 'clinics';
 $page_title = '클리닉';
+$page_key = $page_key ?? 'sub';
 
 $target_table = $g5['write_prefix'] . $bo_table;
 $board = get_board_db($bo_table);
