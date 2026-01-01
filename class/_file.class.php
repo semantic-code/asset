@@ -153,7 +153,7 @@ class File {
         array $files
     ): ?string
     {
-        foreach ($files as $key =>$file) {
+        foreach ($files as $key => $file) {
             // count 제외
             if ($key === 'count') continue;
             // 파일 슬롯이 아니면 제외
