@@ -9,15 +9,15 @@ class Board {
     /**
      * 게시판 리스트, 총 데이터 수($total), 게시글번호($num)을 반환하는 함수
      *
-     * @param string $bo_table   게시판 테이블 명
-     * @param array  $where      커스텀 WHERE 조건 (배열)
+     * @param string         $bo_table   게시판 테이블 명
+     * @param array|false    $where      커스텀 WHERE 조건 (배열), false 사용안함
      * @param int|false|null $page_rows 한 페이지당 목록 수, false 면 LIMIT 없음
      *
      * @return array list, total_count, paging
      */
     public static function get (
-        string $bo_table,
-        array $where = array(),
+        string         $bo_table,
+        array|false    $where = array(),
         int|false|null $page_rows = null,
     ): array
     {
@@ -47,7 +47,7 @@ class Board {
         // --------------------------------------------------
         // 2) WHERE 조건 조립
         // --------------------------------------------------
-        //$where = $where ?? array();
+        if ($where === false) $where = array();
 
         // 카테고리 sca
         $sca = $_GET['sca'] ?? '';
@@ -277,4 +277,5 @@ class Board {
         <?php return ob_get_clean();
     }
 }
+
 
