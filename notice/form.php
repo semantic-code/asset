@@ -28,7 +28,7 @@ if ($w === 'u') {
 ?>
 
 <section class="admin_form_wrap" style="max-width:100%; margin:0 auto;">
-    <form name="fadminform" id="fadminform" method="post" action="form_update.php" enctype="multipart/form-data" onsubmit="return fwrite_submit(this)">
+    <form name="writeform" id="writeform" method="post" action="form_update.php" enctype="multipart/form-data" onsubmit="return writeform_submit(this)">
         <input type="hidden" name="w" value="<?= $w ?? '' ?>">
         <input type="hidden" name="bo_table" value="<?= $bo_table ?>">
         <input type="hidden" name="wr_id" value="<?= $wr_id ?>">
@@ -137,7 +137,7 @@ if ($w === 'u') {
 </section>
 
 <script>
-    function fwrite_submit(f){
+    function writeform_submit(f){
          //editor
         <?php //echo get_editor_js('wr_content', $bo_use_dhtml_editor);?>
         <?php //echo chk_editor_js('wr_content', $bo_use_dhtml_editor);?>
@@ -149,3 +149,4 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
