@@ -138,6 +138,7 @@ if ($w === 'u') {
         <?php endif; ?>
 
         <div class="btn_fixed_top">
+            <a href="/<?= $bo_table ?>/<?= $page_key ?>=list" class="btn btn_02">게시판 이동</a>
             <a href="list.php" class="btn btn_02">목록</a>
             <button type="submit" class="btn btn_01">저장</button>
         </div>
@@ -157,4 +158,5 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
