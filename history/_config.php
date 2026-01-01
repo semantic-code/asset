@@ -9,6 +9,7 @@ include_once $path.'_common.php';
 $sub_menu = '500100';
 $bo_table = $location ?? 'history';
 $page_title = '연혁';
+$page_key = $page_key ?? 'sub';
 
 $board = get_board_db($bo_table);
 if (!empty($board['bo_table'])) {
@@ -19,3 +20,4 @@ if (!empty($board['bo_table'])) {
 
 //add_stylesheet('<link rel="stylesheet" href="_style.css">', 0);
 //add_stylesheet('<link rel="stylesheet" href="'. G5_URL .'/'.$bo_table.'/_style.css">', 0);
+
