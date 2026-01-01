@@ -23,15 +23,6 @@ $files = array();
 if ($w === 'u') {
     $list = Board::view($bo_table, $wr_id);
     $files = $list['file'];
-
-    // 파일첨부 여부 확인
-    $has_file = false;
-    foreach ($files as $file) {
-        if (is_array($file) && $file['file']) {
-            $has_file = true;
-            break;
-        }
-    }
 }
     
 ?>
@@ -91,7 +82,7 @@ if ($w === 'u') {
                     <?= Html::file_upload_list_html($files, $bo_upload_count, "image/*") ?>
                 </td>
             </tr>
-            <?php if ($has_file): ?>
+            <?php if (File::get_ext($files)): ?>
             <tr>
                 <th scope="row" style="background:#f7f7f7; text-align:left; padding:10px; border-bottom:1px solid #ddd;">파일 미리보기</th>
                 <td style="padding:10px; border-bottom:1px solid #ddd;">
@@ -158,5 +149,6 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
