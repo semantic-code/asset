@@ -9,6 +9,7 @@ include_once $path.'_common.php';
 $sub_menu = '500100';
 $bo_table = $location ?? 'notice';
 $page_title = '공지사항';
+$page_key = 'sub';
 
 $board = get_board_db($bo_table);
 if (!empty($board['bo_table'])) {
