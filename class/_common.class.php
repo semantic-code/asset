@@ -26,12 +26,39 @@ class Common {
         if ($mb_level < (int)$allow_level) self::abort($msg);
     }
 
-    public static function abort(string $msg):void {
+    /**
+     * 자바스크립트 alert 커스텀 (클래스 내 사용)
+     * @param string $msg 출력할 데이터
+     */
+    public static function abort(string $msg): void {
         ob_start(); ?>
         <script>
             alert(<?= json_encode(addslashes($msg)) ?>);
             window.history.back();
         </script>
         <?php die(ob_get_clean());
+    }
+
+    /**
+     * PHP 값을 브라우저 콘솔에 출력
+     * @param mixed  $data  출력할 데이터 (string|array|object)
+     * @param string $label 콘솔 라벨
+     */
+    public static function console($data, string $label = 'PHP'): void
+    {
+        $json = json_encode(
+            $data,
+            JSON_UNESCAPED_UNICODE
+            | JSON_HEX_TAG
+            | JSON_HEX_APOS
+            | JSON_HEX_QUOT
+            | JSON_HEX_AMP
+        );
+
+        if ($json === false) return;
+
+        echo "<script>";
+        echo "console.log([" . json_encode($label) . "], {$json});";
+        echo "</script>";
     }
 }
