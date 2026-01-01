@@ -10,6 +10,7 @@ $sub_menu = '750100';
 $bo_table = $location ?? 'landing_log';
 $cf_bo_table = 'landing';
 $page_title = '랜딩페이지 DB';
+$page_key = $page_key ?? 'sub';
 
 $board = get_board_db($bo_table);
 if (!empty($board['bo_table'])) {
@@ -20,3 +21,4 @@ if (!empty($board['bo_table'])) {
 
 //add_stylesheet('<link rel="stylesheet" href="_style.css">', 0);
 //add_stylesheet('<link rel="stylesheet" href="'. G5_URL .'/'.$bo_table.'/_style.css">', 0);
+
