@@ -161,12 +161,13 @@ class File {
             // 파일명 없으면 제외
             if (empty($file['file'])) continue;
             // 실제 파일 존재 확인
-            if (!isset($file['pate']) || !is_file($file['path'] . '/' . $file['file'])) continue;
+            if (!isset($file['path']) || !is_file($file['path'] . '/' . $file['file'])) continue;
 
             // 첫 번째 유효 파일 확장자 반환
-            return strtolower($file['file'], PATHINFO_EXTENSION);
+            return strtolower(pathinfo($file['file'], PATHINFO_EXTENSION));
         }
 
         return null;
     }
 }
+
