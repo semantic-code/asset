@@ -183,4 +183,29 @@ class File {
     
         return $files;
     }
+
+    /**
+     * 첫 번째 실제 첨부파일 확장자 반환
+     * 파일 없으면 null
+     */
+    public static function get_ext (
+        array $files
+    ): ?string
+    {
+        foreach ($files as $key =>$file) {
+            // count 제외
+            if ($key === 'count') continue;
+            // 파일 슬롯이 아니면 제외
+            if (!is_array($file)) continue;
+            // 파일명 없으면 제외
+            if (empty($file['file'])) continue;
+            // 실제 파일 존재 확인
+            if (!isset($file['pate']) || !is_file($file['path'] . '/' . $file['file'])) continue;
+
+            // 첫 번째 유효 파일 확장자 반환
+            return strtolower($file['file'], PATHINFO_EXTENSION);
+        }
+
+        return null;
+    }
 }
