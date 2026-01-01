@@ -27,7 +27,7 @@ if ($w === 'u') {
     
 ?>
 
-<section class="admin_form_wrap" style="max-width:100%; margin:0 auto;">
+<section class="form_wrap" style="max-width:100%; margin:0 auto;">
     <form name="writeform" id="writeform" method="post" action="form_update.php" enctype="multipart/form-data" onsubmit="return writeform_submit(this)">
         <input type="hidden" name="w" value="<?= $w ?? '' ?>">
         <input type="hidden" name="bo_table" value="<?= $bo_table ?>">
@@ -149,4 +149,5 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
