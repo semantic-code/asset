@@ -81,16 +81,12 @@ $paging = Board::paging($result['total'], $page, $bo_page_rows, 5, "list.php?sfl
                 <?php endforeach; endif; ?>
             </tbody>
         </table>
-        <div>
-            <?= $paging ?>
-        </div>
+        <div class="paging"><?= $paging ?></div>
 
         <div class="btn_fixed_top">
             <a href="form.php" class="btn btn_submit">등록</a>
         </div>
     </div>
-
-    <div class="paging"><?= $paging ?></div>
 </section>
 
 <?php
