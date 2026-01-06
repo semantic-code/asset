@@ -17,7 +17,6 @@ if (!empty($board['bo_table'])) {
 } else {
     die('board 값이 없습니다.');
 }
-$target_table = $g5['write_prefix'] . $bo_table;
 
 //add_stylesheet('<link rel="stylesheet" href="_style.css">', 0);
 //<link rel="stylesheet" href="/adm/notice/style.css">
