@@ -375,21 +375,21 @@ class Html {
 
             // 공통변수
             $file_path = $file['path']. '/' . $file['file'];
-            $file_name = $filep['source'] ?? $file['file'];
+            $file_name = $file['source'] ?? $file['file'];
 
             // 이미지 여부
             $is_image = !empty($file['image_type']); ?>
             <?php if ($is_image): ?>
             <!-- 이미지 미리보기 -->
             <div class="view-img-box">
-                <img src="<?= $file['path'] . '/' . $file['file'] ?>" alt="<?= $file['source'] ?>">
+                <img src="<?= $file_path ?>" alt="<?= htmlspecialchars($file_name, ENT_QUOTES) ?>">
             </div>
             <?php else: ?>
             <?php // 이미지 전용 모드이면 일반파일 출력 안함 ?>
             <?php if (!$show_all) continue; ?>
             <!-- 일반 파일 -->
             <div class="view-file-box">
-                <?= htmlspecialchars($file['source'] ?? $file['file'], ENT_QUOTES) ?>
+                <?= htmlspecialchars($file_name, ENT_QUOTES) ?>
             </div>
             <?php endif; ?>
             <?php endforeach; ?>
@@ -397,3 +397,4 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
