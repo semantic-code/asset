@@ -268,7 +268,7 @@ class Html {
                         <option value="<?= $field ?>" <?= get_selected($sfl, $field) ?>><?= $option ?></option>
                     <?php endforeach; ?>
                 </select>
-                <input type="text" name="stx" id="search-text" class="inp" placeholder="검색어 입력" value="<?= $stx ?>">
+                <input type="text" name="stx" id="ooc-search-text" class="inp" placeholder="검색어 입력" value="<?= $stx ?>">
                 <button type="submit" class="btn btn-primary">검색</button>
                 <a href="<?= $init_url ?>" class="btn btn-secondary">초기화</a>
             </div>
@@ -344,4 +344,5 @@ class Html {
         <?php return ob_get_clean();
     }
 }
+
 
