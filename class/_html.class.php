@@ -450,6 +450,8 @@ class Html {
     /**
      * Address input (다음지도) 자바스크립트 출력
      * 다음주소 api 연결 필요함
+     * add_javascript(G5_POSTCODE_JS, 0);    //다음 주소 js
+     * <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
      *
      * @return string
      */
@@ -504,4 +506,5 @@ class Html {
         return str_replace(array('<script>', '</script>'), '', $html);
     }
 }
+
 
