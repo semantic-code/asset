@@ -396,5 +396,111 @@ class Html {
         </div>
         <?php return ob_get_clean();
     }
-}
 
+    /**
+     * Address input (다음지도) html 출력
+     * 다음주소 api 연결 필요함
+     *
+     * @param array $addr ('칼럼이름' => '저장된 값') 
+     * array (우편번호, 기본주소, 상세주소, 참고항목, 도로명/지번 코드)
+     * @return string
+    */
+
+    public static function address(
+        array $addr = array()
+    ): string
+    {
+        $keys = array_keys($addr);
+
+        $zip         = $keys[0] ?? null;
+        $addr1       = $keys[1] ?? null;
+        $addr2       = $keys[2] ?? null;
+        $addr3       = $keys[3] ?? null;
+        $addr_jibeon = $keys[4] ?? null;
+
+        ob_start(); ?>
+        <style>
+            .btn_zip{display:inline-block;background:#9eacc6;color:#fff;height:35px;border:0;border-radius:5px;padding:0 10px;margin-left: .5rem;}
+        </style>
+        <!--<script src="t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>-->
+
+        <div class="addr-wrap td_addr_line" data-zip="<?= $zip ?>" data-addr1="<?= $addr1 ?>" data-addr2="<?= $addr2 ?>" data-addr3="<?= $addr3 ?>" data-jibeon="<?= $addr_jibeon ?>">
+            <?php // 우편번호 ?>
+            <label for="<?= $zip ?>" class="sound_only">우편번호</label>
+            <input type="text" value="<?= $addr[$zip] ?? '' ?>" id="<?= $zip ?>" class="frm_input readonly" size="5" maxlength="6">
+            <button type="button" class="btn_zip">주소 검색</button><br>
+
+            <?php // 기본주소 ?>
+            <input type="text" name="<?= $addr1 ?>" value="<?= $addr[$addr1] ?>" id="<?= $addr1 ?>" class="frm_input readonly" size="60">
+            <label for="<?= $addr1 ?>">기본 주소</label><br>
+
+            <?php // 상세주소 ?>
+            <input type="text" name="<?= $addr2 ?>" value="<?= $addr[$addr2] ?>" id="<?= $addr2 ?>" class="frm_input readonly" size="60">
+            <label for="<?= $addr2 ?>">상세 주소</label><br>
+
+            <?php // 참고항목 ?>
+            <input type="text" name="<?= $addr3 ?>" value="<?= $addr[$addr3] ?>" id="<?= $addr3 ?>" class="frm_input readonly" size="60">
+            <label for="<?= $addr3 ?>">참고항목</label><br>
+
+            <input type="hidden" name="<?= $addr_jibeon ?>" id="<?= $addr_jibeon ?>" value="<?= $addr[$addr_jibeon] ?>">
+        </div>
+        <?php return ob_get_clean();
+    }
+
+    /**
+     * Address input (다음지도) 자바스크립트 출력
+     * 다음주소 api 연결 필요함
+     *
+     * @return string
+     */
+
+    public static function address_js (): string
+    {
+        ob_start(); ?>
+        <script>
+            document.querySelector('.btn_zip').addEventListener('click', function(e){
+                const btn = e.target.closest('.btn_zip');
+                if (!btn) return;
+
+                const wrap = btn.closest('.addr-wrap');
+                if (!wrap) return;
+
+                const zip   = wrap.dataset.zip;
+                const addr1 = wrap.dataset.addr1;
+                const addr2 = wrap.dataset.addr2;
+                const addr3 = wrap.dataset.addr3;
+                const jib   = wrap.dataset.jibeon;
+
+                let extra = ''
+                new daum.Postcode({
+                    oncomplete: function(data) {
+                        const address = (data.userSelectedType === 'R') ? data.roadAddress : data.jibunAddress;
+
+                        // bname이 있으면 참고항목 추가
+                        if (data.bname) {
+                            extra = data.bname;
+                        }
+                        // buildingName이 있으면 참고항목 추가
+                        if (data.buildingName) {
+                            extra = extra ?  extra + ', ' + data.buildingName : data.buildingName;
+                        }
+
+                        if (extra) {
+                            extra = ' (' + extra + ')';
+                        }
+
+                        // 전달된 값 입력
+                        if (zip)   document.getElementById(zip).value   = data.zonecode;
+                        if (addr1) document.getElementById(addr1).value = address;
+                        if (addr3) document.getElementById(addr3).value = extra;
+                        if (jib)   document.getElementById(jib).value   = data.jibunAddress || '';
+
+                        if (addr2) document.getElementById(addr2).focus()
+                    }
+                }).open();
+            });
+        </script>
+        <?php $html = ob_get_clean();
+        return str_replace(array('<script>', '</script>'), '', $html);
+    }
+}
