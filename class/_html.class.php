@@ -343,6 +343,57 @@ class Html {
         </div>
         <?php return ob_get_clean();
     }
+
+    /**
+     * 첨부파일 미리보기 HTML 생성
+     *
+     * @param array $files     게시판 첨부파일 배열
+     * @param bool  $show_all  true = 이미지 + 일반파일 / false = 이미지만
+     *
+     * @return string
+     */
+
+    public static function preview(
+        array $files,
+        bool $show_all = true
+    ): string
+    {
+        ob_start(); ?>
+        <style>
+            div.view-images{display:flex;gap:10px;flex-wrap:wrap;}
+            div.view-img-box{border:1px solid #ddd;padding:5px;border-radius:4px;background:#fafafa;}
+            div.view-images img{display:block;max-width:150px;height:auto;border-radius:3px;}
+        </style>
+
+        <!-- 파일 미리보기 래퍼 -->
+        <div class="view-images">
+            <?php foreach ($files as $file): ?>
+            <?php
+            // continue
+            if (!is_array($file)) continue;
+            if (empty($file['file'])) continue;
+
+            // 공통변수
+            $file_path = $file['path']. '/' . $file['file'];
+            $file_name = $filep['source'] ?? $file['file'];
+
+            // 이미지 여부
+            $is_image = !empty($file['image_type']); ?>
+            <?php if ($is_image): ?>
+            <!-- 이미지 미리보기 -->
+            <div class="view-img-box">
+                <img src="<?= $file['path'] . '/' . $file['file'] ?>" alt="<?= $file['source'] ?>">
+            </div>
+            <?php else: ?>
+            <?php // 이미지 전용 모드이면 일반파일 출력 안함 ?>
+            <?php if (!$show_all) continue; ?>
+            <!-- 일반 파일 -->
+            <div class="view-file-box">
+                <?= htmlspecialchars($file['source'] ?? $file['file'], ENT_QUOTES) ?>
+            </div>
+            <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+        <?php return ob_get_clean();
+    }
 }
-
-
