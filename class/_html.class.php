@@ -458,7 +458,7 @@ class Html {
     {
         ob_start(); ?>
         <script>
-            document.querySelector('.btn_zip').addEventListener('click', function(e){
+            document.addEventListener('click', function(e){
                 const btn = e.target.closest('.btn_zip');
                 if (!btn) return;
 
@@ -504,3 +504,4 @@ class Html {
         return str_replace(array('<script>', '</script>'), '', $html);
     }
 }
+
