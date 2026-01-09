@@ -5,8 +5,9 @@ $page_title.= $w === 'u' ? ' 수정 ' : ' 입력';
 $g5['title'] = $page_title;
 include_once (G5_ADMIN_PATH.'/admin.head.php');
 
-// editor, captcha
+// editor
 include_once (G5_EDITOR_LIB);
+// captcha
 include_once(G5_CAPTCHA_PATH . '/captcha.lib.php');
 
 // use_dhtml_editor
@@ -149,6 +150,7 @@ if ($w === 'u') {
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
 
