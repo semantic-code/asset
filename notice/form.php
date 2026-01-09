@@ -143,11 +143,12 @@ if ($w === 'u') {
         <?php //echo chk_editor_js('wr_content', $bo_use_dhtml_editor);?>
 
         //captcha
-        <?php echo chk_captcha_js() ;?>
+        <?php //echo chk_captcha_js() ;?>
     }
 </script>
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
 
