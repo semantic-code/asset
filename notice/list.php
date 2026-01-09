@@ -79,6 +79,8 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
                     <td><?= $num-- ?></td>
                     <td><?= $row['ca_name'] ?></td>
                     <td><?= $row['wr_subject'] ?></td>
+                    <?php // 에디터 사용시 본문 내용 html테그 제거하고 글자 자르기 ?>
+                    <?php echo utf8_strcut(strip_tags($list[$i]['wr_content']), 68, '...'); ?>                    
                     <td>
                         <img src="<?= $row['img_src'] ?>" alt="이미지출력" style="width: 150px;">
                     </td>
@@ -99,4 +101,5 @@ $paging = Board::paging($result['total'], $page, $board['bo_page_rows'], 5, "lis
 
 <?php
 include_once (G5_ADMIN_PATH.'/admin.tail.php');
+
 
