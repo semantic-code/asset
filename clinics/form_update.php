@@ -19,7 +19,7 @@ if ($w === '') {
     );
     $set+= array(
         'wr_tel'         => $wr_tel,
-        'wr_zip'         => $wr_zip,
+        'wr_zip'         => $wr_zip ?? '',
         'wr_addr1'       => $wr_addr1,
         'wr_addr2'       => $wr_addr2,
         'wr_addr3'       => $wr_addr3,
@@ -54,7 +54,7 @@ if ($w === '') {
 
     $set+= array(
         'wr_tel'         => $wr_tel,
-        'wr_zip'         => $wr_zip,
+        'wr_zip'         => $wr_zip ?? '',
         'wr_addr1'       => $wr_addr1,
         'wr_addr2'       => $wr_addr2,
         'wr_addr3'       => $wr_addr3,
