@@ -427,7 +427,7 @@ class Html {
         <div class="addr-wrap td_addr_line" data-zip="<?= $zip ?>" data-addr1="<?= $addr1 ?>" data-addr2="<?= $addr2 ?>" data-addr3="<?= $addr3 ?>" data-jibeon="<?= $addr_jibeon ?>">
             <?php // 우편번호 ?>
             <label for="<?= $zip ?>" class="sound_only">우편번호</label>
-            <input type="text" value="<?= $addr[$zip] ?? '' ?>" id="<?= $zip ?>" class="frm_input readonly" size="5" maxlength="6">
+            <input type="text" name="<?= $zip ?>" value="<?= $addr[$zip] ?? '' ?>" id="<?= $zip ?>" class="frm_input readonly" size="5" maxlength="6">
             <button type="button" class="btn_zip">주소 검색</button><br>
 
             <?php // 기본주소 ?>
@@ -506,5 +506,3 @@ class Html {
         return str_replace(array('<script>', '</script>'), '', $html);
     }
 }
-
-
