@@ -32,11 +32,12 @@ if ($w === '') {
         $wr_id = sql_insert_id();
         sql_query(" UPDATE {$target_table} SET wr_parent = '{$wr_id}' WHERE wr_id = '{$wr_id}' ");
         sql_query(" UPDATE {$g5['board_table']} SET bo_count_write = bo_count_write + 1 WHERE bo_table = '{$bo_table}' ");
-    }        
-    if (!File::attach_files($files, $bo_table, $wr_id)) {
-        alert("파일 저장 실패", "form.php?w=u&wr_id={$wr_id}");
-    }        
-    goto_url("form.php?w=u&wr_id={$wr_id}");
+
+        // 파일 업로드
+        if (!File::attach_files($files, $bo_table, $wr_id)) {
+            alert("파일 저장 실패", "form.php?w=u&wr_id={$wr_id}");
+        }        
+        goto_url("form.php?w=u&wr_id={$wr_id}");
 
     } else {
         alert("데이터 저장에 실패했습니다.", "list.php");
