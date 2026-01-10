@@ -8,7 +8,7 @@ if ($w === '') {
     $set = array(
         'wr_num'      => $wr_num,
         'ca_name'     => $ca_name ?? '',
-        'mb_id'       => $member['mb_id'],
+        'mb_id'       => $member['mb_id'] ?? '_guest_',
         'wr_name'     => $member['mb_name'],
         'wr_subject'  => $wr_subject ?? '제목-내용없음-' . time(),
         'wr_content'  => $wr_content ?? '내용-내용없음-' . time(),
